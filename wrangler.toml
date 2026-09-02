@@ -1,0 +1,12 @@
+name = "yfc-blog"
+main = "worker.js"
+compatibility_date = "2026-01-01"
+
+# After running: wrangler kv namespace create BLOG_KV
+# paste the returned id below.
+kv_namespaces = [
+  { binding = "BLOG_KV", id = "PASTE_YOUR_KV_NAMESPACE_ID_HERE" }
+]
+
+# Set the admin login password with:
+#   wrangler secret put ADMIN_PASSWORD
