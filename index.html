@@ -52,7 +52,7 @@ body{
   -webkit-font-smoothing:antialiased;
   overflow-x:hidden;
 }
-h1,h2,h3,.display{
+h1,h2,h3,h4,.display{
   font-family:'Fraunces', serif;
   font-optical-sizing:auto;
   color:var(--navy);
@@ -99,7 +99,7 @@ nav.wrap{display:flex; align-items:center; justify-content:space-between;}
 }
 .brand-name{color:#f4f0e4; font-family:'Fraunces',serif; font-weight:600; font-size:1.02rem; line-height:1.1;}
 .brand-name small{display:block; font-family:'IBM Plex Mono',monospace; font-weight:400; font-size:.62rem; letter-spacing:.16em; color:var(--gold-soft); margin-top:3px;}
-nav ul{list-style:none; display:flex; gap:30px; margin:0; padding:0;}
+nav ul{list-style:none; display:flex; gap:24px; margin:0; padding:0;}
 nav ul a{color:#e8e6de; text-decoration:none; font-size:.87rem; font-weight:500; opacity:.82; transition:opacity .2s, color .2s;}
 nav ul a:hover, nav ul a.active{opacity:1; color:var(--gold-soft);}
 .nav-cta{
@@ -111,12 +111,12 @@ nav ul a:hover, nav ul a.active{opacity:1; color:var(--gold-soft);}
 .burger{display:none; background:none; border:none; color:#f4f0e4; font-size:1.5rem; cursor:pointer;}
 .mobile-menu{
   display:none; position:fixed; inset:0; background:var(--navy); z-index:99;
-  flex-direction:column; align-items:center; justify-content:center; gap:26px;
+  flex-direction:column; align-items:center; justify-content:center; gap:22px;
 }
 .mobile-menu.open{display:flex;}
-.mobile-menu a{color:#f4f0e4; text-decoration:none; font-family:'Fraunces',serif; font-size:1.4rem;}
+.mobile-menu a{color:#f4f0e4; text-decoration:none; font-family:'Fraunces',serif; font-size:1.3rem;}
 .mobile-close{position:absolute; top:22px; right:26px; background:none; border:none; color:#f4f0e4; font-size:1.8rem; cursor:pointer;}
-@media(max-width:860px){
+@media(max-width:980px){
   nav ul{display:none;} .nav-cta{display:none;} .burger{display:block;}
 }
 
@@ -203,6 +203,91 @@ section{padding:104px 0;}
 .entry-top{display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:6px;}
 .entry h4{color:var(--navy); font-size:.98rem; font-weight:600; font-family:'Inter',sans-serif; margin:0;}
 .entry p{color:var(--ink-soft); font-size:.88rem; line-height:1.65; margin:0;}
+
+/* ---------- industries we serve ---------- */
+.industry-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:26px;}
+@media(max-width:960px){.industry-grid{grid-template-columns:repeat(2, 1fr);}}
+@media(max-width:620px){.industry-grid{grid-template-columns:1fr;}}
+.ind-card{
+  background:#ffffff;
+  border:1px solid rgba(10,15,28,.1);
+  border-radius:14px;
+  overflow:hidden;
+  transition:transform .28s ease, box-shadow .28s ease, border-color .28s ease;
+  display:flex;
+  flex-direction:column;
+}
+.ind-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 20px 40px rgba(10,15,28,.09);
+  border-color:var(--gold-dim);
+}
+.ind-img-wrap{
+  width:100%;
+  aspect-ratio:16/10;
+  overflow:hidden;
+  position:relative;
+  background:var(--navy-2);
+}
+.ind-img-wrap img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform .4s ease;
+}
+.ind-card:hover .ind-img-wrap img{
+  transform:scale(1.05);
+}
+.ind-body{
+  padding:26px 24px;
+  display:flex;
+  flex-direction:column;
+  flex:1;
+}
+.ind-tag{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.72rem;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--gold);
+  font-weight:600;
+  margin-bottom:10px;
+}
+.ind-body h3{
+  font-size:1.2rem;
+  font-weight:600;
+  color:var(--navy);
+  margin-bottom:10px;
+  line-height:1.25;
+}
+.ind-body p{
+  color:var(--ink-soft);
+  font-size:.9rem;
+  line-height:1.65;
+  margin:0 0 16px;
+}
+.ind-body ul{
+  margin:auto 0 0;
+  padding:0;
+  list-style:none;
+  border-top:1px dashed rgba(10,15,28,.12);
+  padding-top:14px;
+}
+.ind-body li{
+  font-size:.85rem;
+  color:var(--navy);
+  font-weight:500;
+  margin-bottom:6px;
+  position:relative;
+  padding-left:14px;
+}
+.ind-body li::before{
+  content:'•';
+  position:absolute;
+  left:0;
+  color:var(--gold);
+  font-weight:bold;
+}
 
 /* ---------- founder ---------- */
 .founder{ background:var(--navy); color:#f4f0e4; position:relative; overflow:hidden; }
@@ -310,6 +395,7 @@ footer{background:var(--navy); color:#9a97a6; padding:44px 0 30px; border-top:1p
       <li><a href="index.html" data-page="index.html">Home</a></li>
       <li><a href="about.html" data-page="about.html">About</a></li>
       <li><a href="services.html" data-page="services.html">Services</a></li>
+      <li><a href="#industries" data-page="industries">Industries</a></li>
       <li><a href="nri-services.html" data-page="nri-services.html">NRI Services</a></li>
       <li><a href="team.html" data-page="team.html">Our Team</a></li>
       <li><a href="videos.html" data-page="videos.html">Videos</a></li>
@@ -326,6 +412,7 @@ footer{background:var(--navy); color:#9a97a6; padding:44px 0 30px; border-top:1p
   <a href="index.html">Home</a>
   <a href="about.html">About</a>
   <a href="services.html">Services</a>
+  <a href="#industries">Industries</a>
   <a href="nri-services.html">NRI Services</a>
   <a href="team.html">Our Team</a>
   <a href="videos.html">Videos</a>
@@ -547,6 +634,138 @@ footer{background:var(--navy); color:#9a97a6; padding:44px 0 30px; border-top:1p
   </div>
 </section>
 
+<!-- ---------- INDUSTRIES WE SERVE SECTION ---------- -->
+<section id="industries" style="background:var(--paper);">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Sector Expertise</div>
+      <h2>Industries we serve.</h2>
+      <p>Domain-specific accounting, regulatory compliance, statutory audit, and tax planning tailored to key business sectors.</p>
+    </div>
+
+    <div class="industry-grid">
+      <!-- 1. Banking -->
+      <div class="ind-card reveal">
+        <div class="ind-img-wrap">
+          <img src="https://images.unsplash.com/photo-1541354329998-f4d9a9f9297f?auto=format&fit=crop&w=700&q=80" alt="Banking and Financial Institutions" loading="lazy">
+        </div>
+        <div class="ind-body">
+          <span class="ind-tag">Industry 01</span>
+          <h3>Banking</h3>
+          <p>Comprehensive audit solutions, internal controls assessment, and strict RBI regulatory compliance for institutional banks and cooperative societies.</p>
+          <ul>
+            <li>Statutory branch audit &amp; concurrent reviews</li>
+            <li>Stock, credit &amp; revenue leakage audits</li>
+            <li>NPA provisioning &amp; RBI compliance monitoring</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 2. Construction -->
+      <div class="ind-card reveal">
+        <div class="ind-img-wrap">
+          <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=700&q=80" alt="Construction and Real Estate" loading="lazy">
+        </div>
+        <div class="ind-body">
+          <span class="ind-tag">Industry 02</span>
+          <h3>Construction</h3>
+          <p>Structured financial roadmaps for builders, developers, and contractors to ensure smooth project flow, RERA compliance, and tax efficiency.</p>
+          <ul>
+            <li>Joint Development Agreement (JDA) tax structuring</li>
+            <li>RERA statutory certifications &amp; fund audits</li>
+            <li>Works contract GST &amp; ITC optimization</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 3. Education -->
+      <div class="ind-card reveal">
+        <div class="ind-img-wrap">
+          <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=700&q=80" alt="Education and Not-For-Profit Institutions" loading="lazy">
+        </div>
+        <div class="ind-body">
+          <span class="ind-tag">Industry 03</span>
+          <h3>Education</h3>
+          <p>Complete statutory compliance, regulatory guidance, and trust accounting for schools, universities, EdTech firms, and training institutes.</p>
+          <ul>
+            <li>Trust, Society &amp; Section 8 compliance setup</li>
+            <li>Sections 12AB &amp; 80G tax exemption filings</li>
+            <li>FCRA registration, renewal &amp; foreign contribution audits</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 4. Finance -->
+      <div class="ind-card reveal">
+        <div class="ind-img-wrap">
+          <img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=700&q=80" alt="Finance and NBFCs" loading="lazy">
+        </div>
+        <div class="ind-body">
+          <span class="ind-tag">Industry 04</span>
+          <h3>Finance</h3>
+          <p>Institutional oversight, balance sheet restructuring, and statutory reporting for NBFCs, wealth management firms, and investment entities.</p>
+          <ul>
+            <li>NBFC incorporation &amp; RBI Master Direction compliance</li>
+            <li>Loan book due diligence &amp; Ind AS reporting</li>
+            <li>Capital structure planning &amp; investment tax strategy</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 5. Healthcare -->
+      <div class="ind-card reveal">
+        <div class="ind-img-wrap">
+          <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=700&q=80" alt="Healthcare and Hospitals" loading="lazy">
+        </div>
+        <div class="ind-body">
+          <span class="ind-tag">Industry 05</span>
+          <h3>Healthcare</h3>
+          <p>Financial management, clinical cost-center tracking, and tax exemption compliance for hospitals, diagnostic chains, and medical practitioners.</p>
+          <ul>
+            <li>Hospital statutory audit &amp; internal control systems</li>
+            <li>Medical equipment depreciation &amp; capital structuring</li>
+            <li>GST classification, exemptions &amp; RCM advisory</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 6. Technology -->
+      <div class="ind-card reveal">
+        <div class="ind-img-wrap">
+          <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=700&q=80" alt="Technology and IT Enterprises" loading="lazy">
+        </div>
+        <div class="ind-body">
+          <span class="ind-tag">Industry 06</span>
+          <h3>Technology</h3>
+          <p>Scalable finance, tax structuring, cross-border transactions, and regulatory advisory for IT service providers, SaaS companies, and tech startups.</p>
+          <ul>
+            <li>Section 80-IAC DPIIT startup tax exemption support</li>
+            <li>Cross-border transfer pricing &amp; Form 3CEB audits</li>
+            <li>ESOP valuation, setup &amp; global revenue recognition</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 7. Hospitality -->
+      <div class="ind-card reveal">
+        <div class="ind-img-wrap">
+          <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=700&q=80" alt="Hospitality and Restaurants" loading="lazy">
+        </div>
+        <div class="ind-body">
+          <span class="ind-tag">Industry 07</span>
+          <h3>Hospitality</h3>
+          <p>Multi-outlet accounting, dynamic inventory reconciliations, and tailored GST compliance for hotels, resorts, restaurant chains, and travel groups.</p>
+          <ul>
+            <li>Multi-location F&amp;B POS &amp; cash audit systems</li>
+            <li>Restaurant &amp; hotel GST slab reconciliation</li>
+            <li>Franchise agreements, royalties &amp; payroll management</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="wrap footer-grid">
     <div>
@@ -555,6 +774,7 @@ footer{background:var(--navy); color:#9a97a6; padding:44px 0 30px; border-top:1p
       <div class="footer-links">
         <a href="about.html">About</a>
         <a href="services.html">Services</a>
+        <a href="#industries">Industries We Serve</a>
         <a href="nri-services.html">NRI Services</a>
         <a href="team.html">Our Team</a>
         <a href="videos.html">Videos</a>
@@ -614,3 +834,4 @@ if (yrEl) yrEl.textContent = new Date().getFullYear();
 </script>
 </body>
 </html>
+
