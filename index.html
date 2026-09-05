@@ -380,6 +380,132 @@ footer{background:var(--navy); color:#9a97a6; padding:44px 0 30px; border-top:1p
   box-shadow:0 10px 26px rgba(0,0,0,.25); text-decoration:none;
 }
 .wa-float svg{width:28px; height:28px;}
+
+/* ---------- CA SECURE ADMIN MODAL STYLES ---------- */
+.admin-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 7, 45, 0.88);
+  backdrop-filter: blur(10px);
+  z-index: 99999;
+  align-items: center;
+  justify-content: center;
+}
+.admin-overlay.active { display: flex; }
+.admin-box {
+  background: #00072d;
+  border: 1.5px solid rgba(47, 111, 237, 0.4);
+  border-radius: 16px;
+  padding: 38px 30px 28px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  color: #fff;
+  position: relative;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 35px rgba(47, 111, 237, 0.25);
+}
+.admin-overlay.active .admin-box {
+  animation: vaultOpen 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@keyframes vaultOpen {
+  0% { transform: scale(0.6) rotateX(15deg); opacity: 0; }
+  70% { transform: scale(1.03) rotateX(0deg); }
+  100% { transform: scale(1); opacity: 1; }
+}
+.ca-vault-icon {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 14px;
+  color: #2f6fed;
+  background: rgba(47, 111, 237, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(47, 111, 237, 0.3);
+  animation: shieldGlow 2.5s infinite ease-in-out;
+}
+.ca-vault-icon svg { width: 32px; height: 32px; }
+@keyframes shieldGlow {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 10px rgba(47, 111, 237, 0.2); }
+  50% { transform: scale(1.08); box-shadow: 0 0 22px rgba(47, 111, 237, 0.5); }
+}
+.ca-tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  color: #cfe0ff;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.admin-box h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 1.45rem;
+  margin: 0 0 6px;
+  color: #faf7ee;
+}
+.admin-box p {
+  color: #94a3b8;
+  font-size: 0.82rem;
+  margin: 0 0 22px;
+  line-height: 1.4;
+}
+.admin-box input {
+  width: 100%;
+  padding: 13px 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 0.92rem;
+  margin-bottom: 14px;
+  outline: none;
+  box-sizing: border-box;
+}
+.admin-box input:focus {
+  border-color: #2f6fed;
+  box-shadow: 0 0 12px rgba(47, 111, 237, 0.4);
+}
+.admin-box button[type="submit"] {
+  width: 100%;
+  padding: 13px;
+  background: #2f6fed;
+  border: none;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.9rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+.admin-box button[type="submit"]:hover {
+  background: #2458c7;
+  transform: translateY(-1px);
+}
+.esc-hint {
+  margin-top: 18px;
+  font-size: 0.74rem;
+  color: #64748b;
+  font-family: 'IBM Plex Mono', monospace;
+}
+.esc-hint kbd {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: #cbd5e1;
+}
+.close-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: none;
+  border: none;
+  color: #64748b;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+.close-btn:hover { color: #fff; }
 </style>
 
 <script type="application/ld+json">
@@ -824,6 +950,32 @@ footer{background:var(--navy); color:#9a97a6; padding:44px 0 30px; border-top:1p
   <svg viewBox="0 0 24 24" fill="white"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.4-1.5-.9-.8-1.5-1.8-1.6-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.2-.2.2-.3.3-.5.1-.2 0-.4 0-.6C10 9.7 9.4 8.3 9.1 7.7c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3 4.8 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.3-.1-.1-.3-.2-.6-.4z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.7 1.5 5.3L2 22l4.9-1.3c1.5.8 3.3 1.3 5.1 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.7 0-3.3-.5-4.7-1.3l-.3-.2-3.2.8.9-3.1-.2-.3C3.7 14.5 3.2 13 3.2 12c0-4.8 3.9-8.8 8.8-8.8s8.8 3.9 8.8 8.8-4 8.8-8.8 8.8z"/></svg>
 </a>
 
+<!-- ================= CA SECURE ADMIN MODAL ================= -->
+<div id="adminModal" class="admin-overlay">
+  <div class="admin-box">
+    <div class="ca-vault-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        <rect x="9" y="11" width="6" height="5" rx="1" fill="currentColor"/>
+        <path d="M10 11V9a2 2 0 1 1 4 0v2"/>
+      </svg>
+    </div>
+
+    <div class="ca-tag">RESTRICTED AUDIT PORTAL</div>
+    <h3>Firm Administrator</h3>
+    <p>Yasir Faraz &amp; Co. — Authorized Access Only</p>
+    
+    <form id="adminForm" onsubmit="handleAdminAuth(event)">
+      <input type="password" id="adminPass" placeholder="Enter Partner / Master Key..." autocomplete="off" required>
+      <button type="submit">Unlock Secure Console</button>
+      <div id="adminError" style="display:none; color:#ef4444; font-size:0.8rem; margin-top:8px; font-family:'IBM Plex Mono',monospace;">Invalid Master Key! Try again.</div>
+    </form>
+    
+    <div class="esc-hint">Press <kbd>Esc</kbd> to exit</div>
+    <button class="close-btn" onclick="closeAdmin()">✕</button>
+  </div>
+</div>
+
 <script>
 // Header scroll state
 const header = document.getElementById('siteHeader');
@@ -869,7 +1021,52 @@ if (yrEl) yrEl.textContent = new Date().getFullYear();
     if (a.dataset.page === path) a.classList.add('active');
   });
 })();
+
+// Master Key & Dashboard Redirection Logic
+const MASTER_KEY = "YasirCA@2026"; 
+const DASHBOARD_URL = "https://analytics.google.com"; 
+
+// Keyboard shortcut trigger: Ctrl + Shift + A
+document.addEventListener('keydown', (e) => {
+  if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'a') {
+    e.preventDefault();
+    openAdmin();
+  }
+  if (e.key === 'Escape') {
+    closeAdmin();
+  }
+});
+
+function openAdmin() {
+  const modal = document.getElementById('adminModal');
+  modal.classList.add('active');
+  setTimeout(() => document.getElementById('adminPass').focus(), 100);
+}
+
+function closeAdmin() {
+  document.getElementById('adminModal').classList.remove('active');
+  document.getElementById('adminError').style.display = 'none';
+  document.getElementById('adminPass').value = '';
+}
+
+function handleAdminAuth(event) {
+  event.preventDefault();
+  const inputPass = document.getElementById('adminPass').value;
+  const errorMsg = document.getElementById('adminError');
+
+  if (inputPass === MASTER_KEY) {
+    errorMsg.style.display = 'none';
+    window.location.href = DASHBOARD_URL;
+  } else {
+    errorMsg.style.display = 'block';
+    const input = document.getElementById('adminPass');
+    input.value = '';
+    input.focus();
+    input.style.borderColor = '#ef4444';
+  }
+}
 </script>
 </body>
 </html>
+
 
