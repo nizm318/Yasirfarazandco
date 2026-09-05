@@ -4,32 +4,33 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Blog & Insights | Yasir Faraz and Co.</title>
+<meta name="google-site-verification" content="vZo-jfgM8pS5i85S4rmGw4nWHefAhYWVmXqEsc-N-7A" />
 <meta name="description" content="Daily thoughts, tax insights, MCA compliance guides, and corporate law updates from CA Yasir Faraz.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Blog & Insights | Yasir Faraz and Co.">
 <meta property="og:description" content="Daily thoughts, tax insights, MCA compliance guides, and corporate law updates from CA Yasir Faraz.">
-<meta property="og:image" content="https://yourdomain.com/assets/founder.jpg">
-<meta property="og:url" content="https://yourdomain.com/blog.html">
+<meta property="og:image" content="https://yasirfarazandco.vercel.app/assets/founder.jpg">
+<meta property="og:url" content="https://yasirfarazandco.vercel.app/blog.html">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Blog & Insights | Yasir Faraz and Co.">
 <meta name="twitter:description" content="Daily thoughts, tax insights, MCA compliance guides, and corporate law updates from CA Yasir Faraz.">
-<meta name="twitter:image" content="https://yourdomain.com/assets/founder.jpg">
+<meta name="twitter:image" content="https://yasirfarazandco.vercel.app/assets/founder.jpg">
 
 <!-- Google Analytics (GA4) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-31GFDJ2F38"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-XXXXXXXXXX');
+  gtag('config', 'G-31GFDJ2F38');
 </script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://yourdomain.com/"},
-    {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://yourdomain.com/blog.html"}
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://yasirfarazandco.vercel.app/"},
+    {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://yasirfarazandco.vercel.app/blog.html"}
   ]
 }
 </script>
@@ -84,7 +85,7 @@ header.scrolled{ padding:12px 0; box-shadow:0 6px 24px rgba(0,0,0,.25); }
 nav.wrap{display:flex; align-items:center; justify-content:space-between;}
 .brand{display:flex; align-items:center; gap:12px; text-decoration:none;}
 .brand-mark{
-  width:42px; height:42px; object-fit:contain; flex-shrink:0;
+  width:42px; height:42px; object-fit:contain; flex-shrink:0; background:#ffffff; border-radius:6px; padding:3px;
 }
 .brand-name{color:#f4f0e4; font-family:'Fraunces',serif; font-weight:600; font-size:1.02rem; line-height:1.1;}
 .brand-name small{display:block; font-family:'IBM Plex Mono',monospace; font-weight:400; font-size:.62rem; letter-spacing:.16em; color:var(--gold-soft); margin-top:3px;}
@@ -263,7 +264,7 @@ section{padding:70px 0;}
   margin:0 0 16px;
 }
 
-/* ---------- admin portal modal/card ---------- */
+/* ---------- CA SECURE ADMIN MODAL & STYLING ---------- */
 .admin-badge-btn{
   font-family:'IBM Plex Mono',monospace;
   font-size:.76rem;
@@ -271,7 +272,7 @@ section{padding:70px 0;}
   background:var(--navy);
   color:#f4f0e4;
   border:1px solid var(--gold-dim);
-  padding:10px 16px;
+  padding:12px 16px;
   border-radius:8px;
   cursor:pointer;
   width:100%;
@@ -279,62 +280,95 @@ section{padding:70px 0;}
   align-items:center;
   justify-content:center;
   gap:8px;
-  transition:background .2s;
+  transition:background .2s, transform .2s;
 }
 .admin-badge-btn:hover{
   background:var(--navy-2);
+  transform:translateY(-1px);
 }
 .admin-panel-overlay{
   display:none;
   position:fixed;
   inset:0;
-  background:rgba(0,7,45,.75);
-  z-index:200;
+  background:rgba(0,7,45,.88);
+  z-index:99999;
   align-items:center;
   justify-content:center;
   padding:20px;
-  backdrop-filter:blur(4px);
+  backdrop-filter:blur(10px);
 }
 .admin-panel-overlay.open{display:flex;}
 .admin-modal{
-  background:#ffffff;
+  background:#00072d;
+  border:1.5px solid rgba(47,111,237,.4);
   width:100%;
-  max-width:680px;
-  max-height:90vh;
+  max-width:540px;
+  max-height:92vh;
   overflow-y:auto;
-  border-radius:14px;
-  padding:34px 30px;
-  box-shadow:0 24px 50px rgba(0,0,0,.3);
+  border-radius:16px;
+  padding:36px 30px;
+  box-shadow:0 20px 50px rgba(0,0,0,.6), 0 0 35px rgba(47,111,237,.25);
   position:relative;
+  color:#fff;
+  animation:vaultOpen 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
-.admin-modal-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:20px;
-  border-bottom:1px solid rgba(10,15,28,.1);
-  padding-bottom:14px;
+@keyframes vaultOpen {
+  0% { transform: scale(0.6) rotateX(15deg); opacity: 0; }
+  70% { transform: scale(1.03) rotateX(0deg); }
+  100% { transform: scale(1); opacity: 1; }
 }
-.admin-modal-header h2{
-  font-size:1.3rem;
-  font-weight:600;
+
+.ca-vault-icon {
+  width: 58px;
+  height: 58px;
+  margin: 0 auto 14px;
+  color: #2f6fed;
+  background: rgba(47, 111, 237, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(47, 111, 237, 0.3);
+  animation: shieldGlow 2.5s infinite ease-in-out;
+}
+.ca-vault-icon svg { width: 30px; height: 30px; }
+@keyframes shieldGlow {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 10px rgba(47, 111, 237, 0.2); }
+  50% { transform: scale(1.08); box-shadow: 0 0 22px rgba(47, 111, 237, 0.5); }
+}
+
+.ca-tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  color: #cfe0ff;
+  font-weight: 600;
+  margin-bottom: 6px;
+  text-align:center;
 }
 .modal-close-btn{
+  position:absolute;
+  top:16px;
+  right:16px;
   background:none;
   border:none;
-  font-size:1.6rem;
+  font-size:1.3rem;
   cursor:pointer;
-  color:var(--ink-soft);
+  color:#64748b;
+  transition:color .2s;
 }
+.modal-close-btn:hover{color:#fff;}
+
 .admin-form-group{
   margin-bottom:16px;
+  text-align:left;
 }
 .admin-form-group label{
   display:block;
   font-family:'IBM Plex Mono',monospace;
   font-size:.74rem;
   font-weight:600;
-  color:var(--navy);
+  color:#cfe0ff;
   text-transform:uppercase;
   letter-spacing:.05em;
   margin-bottom:6px;
@@ -344,18 +378,24 @@ section{padding:70px 0;}
 .admin-form-group textarea{
   width:100%;
   padding:12px 14px;
-  border:1px solid rgba(10,15,28,.18);
-  border-radius:7px;
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:8px;
   font-family:'Inter',sans-serif;
   font-size:.92rem;
-  color:var(--ink);
-  background:var(--paper);
+  color:#fff;
+  background:rgba(255,255,255,.05);
+  box-sizing:border-box;
 }
 .admin-form-group input:focus,
 .admin-form-group select:focus,
 .admin-form-group textarea:focus{
-  outline:2px solid var(--gold);
-  outline-offset:1px;
+  outline:none;
+  border-color:var(--gold);
+  box-shadow:0 0 12px rgba(47,111,237,.4);
+}
+.admin-form-group select option{
+  background:#00072d;
+  color:#fff;
 }
 .admin-form-group textarea{
   resize:vertical;
@@ -366,9 +406,24 @@ section{padding:70px 0;}
   border-radius:6px;
   margin-top:12px;
   display:none;
+  font-family:'IBM Plex Mono',monospace;
 }
-.admin-status.ok{display:block; background:rgba(46,125,50,.1); color:#2e7d32;}
-.admin-status.err{display:block; background:rgba(163,64,47,.1); color:#a3402f;}
+.admin-status.ok{display:block; background:rgba(46,125,50,.2); color:#4ade80; border:1px solid rgba(74,222,128,.3);}
+.admin-status.err{display:block; background:rgba(239,68,68,.18); color:#ef4444; border:1px solid rgba(239,68,68,.3);}
+
+.esc-hint {
+  margin-top: 18px;
+  font-size: 0.74rem;
+  color: #64748b;
+  font-family: 'IBM Plex Mono', monospace;
+  text-align:center;
+}
+.esc-hint kbd {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: #cbd5e1;
+}
 
 /* ---------- breadcrumbs & response-time badge ---------- */
 .breadcrumbs{
@@ -434,7 +489,7 @@ footer{background:var(--navy); color:#9a97a6; padding:44px 0 30px; border-top:1p
     <ul>
       <li><a href="index.html" data-page="index.html">Home</a></li>
       <li><a href="about.html" data-page="about.html">About</a></li>
-      <li><a href="services.html" data-page="services.html">Services</a></li>
+      <li><a href="index.html#services" data-page="services">Services</a></li>
       <li><a href="index.html#industries" data-page="industries">Industries</a></li>
       <li><a href="nri-services.html" data-page="nri-services.html">NRI Services</a></li>
       <li><a href="team.html" data-page="team.html">Our Team</a></li>
@@ -451,7 +506,7 @@ footer{background:var(--navy); color:#9a97a6; padding:44px 0 30px; border-top:1p
   <button class="mobile-close" id="mobileClose" aria-label="Close menu">×</button>
   <a href="index.html">Home</a>
   <a href="about.html">About</a>
-  <a href="services.html">Services</a>
+  <a href="index.html#services">Services</a>
   <a href="index.html#industries">Industries</a>
   <a href="nri-services.html">NRI Services</a>
   <a href="team.html">Our Team</a>
@@ -501,38 +556,49 @@ footer{background:var(--navy); color:#9a97a6; padding:44px 0 30px; border-top:1p
         <div class="sidebar-card" style="background:#ffffff; border:1px solid rgba(10,15,28,.12);">
           <h3>Admin Control</h3>
           <p>Are you CA Yasir Faraz or an authorized editor? Log in to create, edit, or publish articles.</p>
-          <button class="admin-badge-btn" id="openAdminBtn">🔐 Admin Login &amp; Write</button>
+          <button class="admin-badge-btn" id="openAdminBtn">🛡️ Partner / Master Login</button>
         </div>
       </aside>
     </div>
   </div>
 </section>
 
-<!-- Admin Modal -->
+<!-- CA Secure Admin Modal -->
 <div class="admin-panel-overlay" id="adminModal">
   <div class="admin-modal">
-    <div class="admin-modal-header">
-      <h2 id="modalTitle">Admin Portal</h2>
-      <button class="modal-close-btn" id="closeModalBtn">&times;</button>
-    </div>
-
+    <button class="modal-close-btn" id="closeModalBtn">&times;</button>
+    
     <!-- Login Screen -->
-    <div id="adminLoginForm">
-      <p style="color:var(--ink-soft); font-size:.9rem; margin-bottom:18px;">Enter your admin passcode to access the publishing dashboard.</p>
-      <div class="admin-form-group">
-        <label for="adminPass">Passcode</label>
-        <input type="password" id="adminPass" placeholder="Enter passcode (default: admin123)">
+    <div id="adminLoginForm" style="text-align:center;">
+      <div class="ca-vault-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          <rect x="9" y="11" width="6" height="5" rx="1" fill="currentColor"/>
+          <path d="M10 11V9a2 2 0 1 1 4 0v2"/>
+        </svg>
       </div>
-      <button class="btn btn-gold" id="loginBtn" style="width:100%; justify-content:center;">Unlock Dashboard</button>
-      <div id="loginStatus" class="admin-status"></div>
+      <div class="ca-tag">RESTRICTED AUDIT PORTAL</div>
+      <h3 style="font-family:'Fraunces',serif; font-size:1.45rem; margin:0 0 6px; color:#faf7ee;">Blog Administrator</h3>
+      <p style="color:#94a3b8; font-size:0.82rem; margin:0 0 22px;">Yasir Faraz &amp; Co. — Authorized Publishing Access</p>
+      
+      <form id="adminAuthForm" onsubmit="handleAdminLogin(event)">
+        <div class="admin-form-group">
+          <input type="password" id="adminPass" placeholder="Enter Master Passcode..." autocomplete="off" required>
+        </div>
+        <button type="submit" class="btn btn-gold" style="width:100%; justify-content:center; padding:13px;">Unlock Publishing Console</button>
+        <div id="loginStatus" class="admin-status"></div>
+      </form>
+      <div class="esc-hint">Press <kbd>Esc</kbd> to exit</div>
     </div>
 
     <!-- Article Editor -->
     <div id="adminEditor" style="display:none;">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px;">
-        <span style="font-family:'IBM Plex Mono',monospace; font-size:.76rem; color:#2e7d32; font-weight:600;">● Logged in as Editor</span>
-        <button id="logoutBtn" style="background:none; border:none; color:#a3402f; text-decoration:underline; font-size:.8rem; cursor:pointer;">Logout</button>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; border-bottom:1px solid rgba(255,255,255,.1); padding-bottom:12px;">
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:.78rem; color:#4ade80; font-weight:600;">● Logged in: CA Yasir Faraz</span>
+        <button id="logoutBtn" style="background:none; border:none; color:#ef4444; text-decoration:underline; font-size:.8rem; cursor:pointer; font-family:'IBM Plex Mono',monospace;">Lock &amp; Logout</button>
       </div>
+
+      <h3 style="font-family:'Fraunces',serif; font-size:1.3rem; margin:0 0 16px; color:#faf7ee;">Create New Article</h3>
 
       <form id="newPostForm">
         <div class="admin-form-group">
@@ -564,10 +630,10 @@ footer{background:var(--navy); color:#9a97a6; padding:44px 0 30px; border-top:1p
 
         <div class="admin-form-group">
           <label for="postContent">Full Article Body *</label>
-          <textarea id="postContent" rows="8" placeholder="Write full text and detailed breakdown here..." required></textarea>
+          <textarea id="postContent" rows="7" placeholder="Write full text and detailed breakdown here..." required></textarea>
         </div>
 
-        <button type="submit" class="btn btn-gold" style="width:100%; justify-content:center;">Publish Article to Feed</button>
+        <button type="submit" class="btn btn-gold" style="width:100%; justify-content:center; padding:13px;">Publish Article to Feed</button>
         <div id="postStatus" class="admin-status"></div>
       </form>
     </div>
@@ -581,7 +647,7 @@ footer{background:var(--navy); color:#9a97a6; padding:44px 0 30px; border-top:1p
       <div class="footer-note">Chartered Accountants — Statutory Audit, Tax Planning &amp; Corporate Advisory. Member, Institute of Chartered Accountants of India (ICAI).</div>
       <div class="footer-links">
         <a href="about.html">About</a>
-        <a href="services.html">Services</a>
+        <a href="index.html#services">Services</a>
         <a href="index.html#industries">Industries We Serve</a>
         <a href="nri-services.html">NRI Services</a>
         <a href="team.html">Our Team</a>
@@ -634,7 +700,7 @@ if (yrEl) yrEl.textContent = new Date().getFullYear();
 })();
 
 // ====================================================
-// DEFAULT INITIAL BLOG POSTS (Pre-populated)
+// DEFAULT INITIAL BLOG POSTS
 // ====================================================
 const defaultPosts = [
   {
@@ -678,7 +744,6 @@ Key Takeaways for Global Investors & NRI Entities:
   }
 ];
 
-// Initialize storage
 function getPosts() {
   const stored = localStorage.getItem('yfc_blog_posts');
   if (!stored) {
@@ -725,7 +790,7 @@ function renderBlogFeed() {
         <div class="post-full">${escapeHtml(post.content)}</div>
         <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px;">
           <button class="post-toggle-btn" onclick="togglePost(${post.id})">Read Article →</button>
-          ${isAdmin ? `<button onclick="deletePost(${post.id})" style="background:none; border:none; color:#a3402f; font-family:'IBM Plex Mono',monospace; font-size:.76rem; cursor:pointer; text-decoration:underline;">Delete Post</button>` : ''}
+          ${isAdmin ? `<button onclick="deletePost(${post.id})" style="background:none; border:none; color:#ef4444; font-family:'IBM Plex Mono',monospace; font-size:.76rem; cursor:pointer; text-decoration:underline;">Delete Post</button>` : ''}
         </div>
       </article>
     `;
@@ -751,22 +816,22 @@ window.deletePost = function(id) {
 };
 
 // ====================================================
-// ADMIN MODAL & AUTHENTICATION
+// CA SECURE ADMIN AUTH & PUBLISHING LOGIC
 // ====================================================
+const MASTER_KEY = "YasirCA@2026"; // Firm Master Key
+
 const adminModal = document.getElementById('adminModal');
 const openAdminBtn = document.getElementById('openAdminBtn');
 const closeModalBtn = document.getElementById('closeModalBtn');
 const adminLoginForm = document.getElementById('adminLoginForm');
 const adminEditor = document.getElementById('adminEditor');
 const adminPass = document.getElementById('adminPass');
-const loginBtn = document.getElementById('loginBtn');
 const loginStatus = document.getElementById('loginStatus');
 const logoutBtn = document.getElementById('logoutBtn');
 const newPostForm = document.getElementById('newPostForm');
 const postDateInput = document.getElementById('postDate');
 const postStatus = document.getElementById('postStatus');
 
-// Set current date in form
 const now = new Date();
 const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 if (postDateInput) {
@@ -778,34 +843,52 @@ function updateAdminUI() {
   if (isAuth) {
     adminLoginForm.style.display = 'none';
     adminEditor.style.display = 'block';
-    document.getElementById('modalTitle').textContent = 'Write New Blog Post';
   } else {
     adminLoginForm.style.display = 'block';
     adminEditor.style.display = 'none';
-    document.getElementById('modalTitle').textContent = 'Admin Authentication';
+    if (adminPass) adminPass.value = '';
+    if (loginStatus) loginStatus.style.display = 'none';
   }
 }
 
-openAdminBtn.addEventListener('click', () => {
+function openAdmin() {
   adminModal.classList.add('open');
   updateAdminUI();
-});
+  setTimeout(() => {
+    if (adminPass && adminLoginForm.style.display !== 'none') adminPass.focus();
+  }, 100);
+}
 
-closeModalBtn.addEventListener('click', () => {
+function closeAdmin() {
   adminModal.classList.remove('open');
-});
+}
+
+openAdminBtn.addEventListener('click', openAdmin);
+closeModalBtn.addEventListener('click', closeAdmin);
 
 adminModal.addEventListener('click', (e) => {
-  if (e.target === adminModal) adminModal.classList.remove('open');
+  if (e.target === adminModal) closeAdmin();
 });
 
-// Login handling (Passcode: admin123)
-loginBtn.addEventListener('click', () => {
+// Shortcut Trigger: Ctrl + Shift + A
+document.addEventListener('keydown', (e) => {
+  if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'a') {
+    e.preventDefault();
+    openAdmin();
+  }
+  if (e.key === 'Escape') {
+    closeAdmin();
+  }
+});
+
+// Authenticate
+function handleAdminLogin(e) {
+  e.preventDefault();
   const pass = adminPass.value.trim();
-  if (pass === 'admin123' || pass === 'yasirfaraz') {
+  if (pass === MASTER_KEY || pass === 'yasirfaraz') {
     sessionStorage.setItem('yfc_admin_auth', 'true');
     loginStatus.className = 'admin-status ok';
-    loginStatus.textContent = 'Authenticated successfully!';
+    loginStatus.textContent = 'Authenticated. Unlocking Console...';
     setTimeout(() => {
       loginStatus.style.display = 'none';
       updateAdminUI();
@@ -813,9 +896,11 @@ loginBtn.addEventListener('click', () => {
     }, 400);
   } else {
     loginStatus.className = 'admin-status err';
-    loginStatus.textContent = 'Invalid passcode. Please try again.';
+    loginStatus.textContent = 'Invalid Master Key. Access Denied.';
+    adminPass.value = '';
+    adminPass.focus();
   }
-});
+}
 
 // Logout
 logoutBtn.addEventListener('click', () => {
@@ -824,7 +909,7 @@ logoutBtn.addEventListener('click', () => {
   renderBlogFeed();
 });
 
-// Handle New Post Submission
+// Post Submit
 newPostForm.addEventListener('submit', (e) => {
   e.preventDefault();
   const title = document.getElementById('postTitle').value.trim();
@@ -855,13 +940,14 @@ newPostForm.addEventListener('submit', (e) => {
     postStatus.style.display = 'none';
     newPostForm.reset();
     if (postDateInput) postDateInput.value = `${monthNames[now.getMonth()]} ${now.getFullYear()}`;
-    adminModal.classList.remove('open');
+    closeAdmin();
     renderBlogFeed();
   }, 600);
 });
 
-// Initial Render
+// Initial Load
 renderBlogFeed();
 </script>
 </body>
 </html>
+
