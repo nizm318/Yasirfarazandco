@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /admin.html
 
-Sitemap: https://yourdomain.com/sitemap.xml
+Sitemap: https://yasirfarazandco.vercel.app/sitemap.xml
