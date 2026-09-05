@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin | Yasir Faraz and Co.</title>
+<title>Admin Portal | Yasir Faraz and Co.</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
   --ink:#0e1b2e;
@@ -17,673 +17,496 @@
   --gold:#2f6fed;
   --gold-soft:#cfe0ff;
   --gold-dim:rgba(47,111,237,.26);
-  --paper:#ffffff;
+  --paper:#f8fafc;
   --paper-2:#eef3fa;
-  --line: rgba(47,111,237,.26);
+  --line:rgba(47,111,237,.2);
   --ink-soft:#4a5568;
-  --maxw: 1180px;
+  --maxw:1120px;
 }
 *{box-sizing:border-box;}
-html{scroll-behavior:smooth;}
 body{
   margin:0;
   background:var(--paper);
   color:var(--ink);
-  font-family:'Inter', sans-serif;
-  -webkit-font-smoothing:antialiased;
-  overflow-x:hidden;
+  font-family:'Inter',sans-serif;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
 }
-h1,h2,h3,.display{
-  font-family:'Fraunces', serif;
-  font-optical-sizing:auto;
-  color:var(--navy);
-  margin:0;
-  letter-spacing:-0.01em;
-}
-.mono{ font-family:'IBM Plex Mono', monospace; }
-a{color:inherit;}
-img{max-width:100%;display:block;}
-.wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px;}
-@media(max-width:640px){.wrap{padding:0 20px;}}
+.mono{font-family:'IBM Plex Mono',monospace;}
+a{color:inherit;text-decoration:none;}
 
-/* ---------- stamp / ledger-tag signature element ---------- */
-.stamp{
-  display:inline-flex; align-items:center; gap:.4em;
-  font-family:'IBM Plex Mono', monospace; font-size:.72rem; font-weight:600; letter-spacing:.03em;
-  padding:.32em .7em; border:1.4px solid currentColor; border-radius:3px;
-  white-space:nowrap; transform:rotate(-1.2deg); opacity:0;
-}
-.stamp.on-dark{color:var(--gold-soft); background:rgba(47,111,237,.08);}
-.stamp.on-light{color:var(--navy-3); background:rgba(10,15,28,.04);}
-.stamp.in{animation:stampIn .5s cubic-bezier(.2,1.4,.4,1) forwards;}
-@keyframes stampIn{
-  0%{opacity:0; transform:scale(1.6) rotate(-8deg);}
-  60%{opacity:1;}
-  100%{opacity:1; transform:scale(1) rotate(-1.2deg);}
-}
-@media (prefers-reduced-motion: reduce){
-  .stamp{opacity:1; transform:rotate(-1.2deg);}
-  .reveal{opacity:1 !important; transform:none !important;}
-}
-
-/* ---------- nav ---------- */
+/* Header */
 header{
-  position:fixed; top:0; left:0; right:0; z-index:100;
-  padding:18px 0; background:var(--navy);
-  transition:padding .35s ease, box-shadow .35s ease;
+  background:var(--navy);
+  padding:16px 0;
+  border-bottom:1px solid var(--gold-dim);
 }
-header.scrolled{ padding:12px 0; box-shadow:0 6px 24px rgba(0,0,0,.25); }
-nav.wrap{display:flex; align-items:center; justify-content:space-between;}
-.brand{display:flex; align-items:center; gap:12px; text-decoration:none;}
-.brand-mark{
-  width:42px; height:42px; object-fit:contain; flex-shrink:0;
+.header-wrap{
+  max-width:var(--maxw);
+  margin:0 auto;
+  padding:0 24px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
 }
-.brand-name{color:#f4f0e4; font-family:'Fraunces',serif; font-weight:600; font-size:1.02rem; line-height:1.1;}
-.brand-name small{display:block; font-family:'IBM Plex Mono',monospace; font-weight:400; font-size:.62rem; letter-spacing:.16em; color:var(--gold-soft); margin-top:3px;}
-nav ul{list-style:none; display:flex; gap:30px; margin:0; padding:0;}
-nav ul a{color:#e8e6de; text-decoration:none; font-size:.87rem; font-weight:500; opacity:.82; transition:opacity .2s, color .2s;}
-nav ul a:hover, nav ul a.active{opacity:1; color:var(--gold-soft);}
-.nav-cta{
-  display:inline-flex; align-items:center; gap:8px; background:var(--gold); color:#ffffff;
-  font-weight:700; font-size:.83rem; padding:9px 18px; border-radius:6px; text-decoration:none;
-  transition:transform .2s ease, box-shadow .2s ease;
-}
-.nav-cta:hover{transform:translateY(-1px); box-shadow:0 6px 18px rgba(47,111,237,.35);}
-.burger{display:none; background:none; border:none; color:#f4f0e4; font-size:1.5rem; cursor:pointer;}
-.mobile-menu{
-  display:none; position:fixed; inset:0; background:var(--navy); z-index:99;
-  flex-direction:column; align-items:center; justify-content:center; gap:26px;
-}
-.mobile-menu.open{display:flex;}
-.mobile-menu a{color:#f4f0e4; text-decoration:none; font-family:'Fraunces',serif; font-size:1.4rem;}
-.mobile-close{position:absolute; top:22px; right:26px; background:none; border:none; color:#f4f0e4; font-size:1.8rem; cursor:pointer;}
-@media(max-width:860px){
-  nav ul{display:none;} .nav-cta{display:none;} .burger{display:block;}
-}
-
-/* ---------- page hero (used on every inner page) ---------- */
-.page-hero{
-  background: radial-gradient(1100px 560px at 82% -10%, rgba(47,111,237,.16), transparent 60%),
-    linear-gradient(180deg, var(--navy) 0%, var(--navy) 78%, #0d1424 100%);
-  color:#f4f0e4; padding:150px 0 76px; border-bottom:1px solid var(--gold-dim);
-}
-.hero-eyebrow{
-  font-family:'IBM Plex Mono',monospace; font-size:.78rem; letter-spacing:.2em;
-  color:var(--gold-soft); text-transform:uppercase; margin-bottom:20px; display:flex; align-items:center; gap:12px;
-}
-.hero-eyebrow::before{content:''; width:34px; height:1px; background:var(--gold);}
-.page-hero h1{font-size:clamp(2.1rem, 4.6vw, 3.4rem); font-weight:600; color:#faf7ee; max-width:20ch; line-height:1.08;}
-.page-hero h1 em{font-style:italic; color:var(--gold-soft); font-weight:500;}
-.page-hero p.lede{margin-top:22px; max-width:60ch; font-size:1.05rem; line-height:1.7; color:#c8c6bc;}
-
-/* ---------- home hero (full) ---------- */
-.hero{ padding-top:168px; padding-bottom:96px; }
-.hero-actions{display:flex; gap:14px; margin-top:34px; flex-wrap:wrap;}
-.btn{
-  display:inline-flex; align-items:center; gap:9px; padding:14px 26px; border-radius:6px;
-  font-weight:700; font-size:.92rem; text-decoration:none; transition:transform .2s ease, box-shadow .2s ease;
-}
-.btn-gold{background:var(--gold); color:#ffffff;}
-.btn-gold:hover{transform:translateY(-2px); box-shadow:0 10px 26px rgba(47,111,237,.3);}
-.btn-ghost{border:1.4px solid rgba(244,240,228,.35); color:#f4f0e4;}
-.btn-ghost:hover{border-color:var(--gold-soft); color:var(--gold-soft);}
-.hero-stamps{display:flex; gap:12px; flex-wrap:wrap; margin-top:50px;}
-.hero-figures{
-  display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--gold-dim);
-  margin-top:60px; border:1px solid var(--gold-dim); border-radius:10px; overflow:hidden;
-}
-.hero-figures div{background:var(--navy-2); padding:22px 20px;}
-.hero-figures .num{font-family:'Fraunces',serif; font-size:1.9rem; color:var(--gold-soft); font-weight:600;}
-.hero-figures .lbl{font-size:.76rem; color:#9a97a6; margin-top:4px; letter-spacing:.02em;}
-
-/* ---------- section shell ---------- */
-section{padding:104px 0;}
-@media(max-width:768px){section{padding:68px 0;}}
-.eyebrow{
-  font-family:'IBM Plex Mono',monospace; font-size:.74rem; letter-spacing:.18em; text-transform:uppercase;
-  color:var(--gold); display:flex; align-items:center; gap:12px; margin-bottom:16px;
-}
-.eyebrow::before{content:''; width:26px; height:1px; background:var(--gold);}
-.section-head{max-width:640px; margin-bottom:52px;}
-.section-head h2{font-size:clamp(1.7rem,3vw,2.5rem); font-weight:600;}
-.section-head p{margin-top:16px; color:var(--ink-soft); font-size:1.02rem; line-height:1.7;}
-
-.reveal{opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s ease;}
-.reveal.in{opacity:1; transform:none;}
-
-/* ---------- about ---------- */
-.about-grid{display:grid; grid-template-columns:1.1fr .9fr; gap:64px; align-items:start;}
-@media(max-width:900px){.about-grid{grid-template-columns:1fr; gap:36px;}}
-.about-grid p{color:var(--ink-soft); line-height:1.8; margin:0 0 18px; font-size:1.02rem;}
-.why-list{list-style:none; margin:0; padding:0; border-top:1px solid rgba(10,15,28,.12);}
-.why-list li{ padding:20px 0; border-bottom:1px solid rgba(10,15,28,.12); display:grid; grid-template-columns:60px 1fr; gap:18px; }
-.why-list .tag{font-family:'IBM Plex Mono',monospace; font-size:.72rem; color:var(--gold); letter-spacing:.04em; padding-top:3px;}
-.why-list h4{font-family:'Fraunces',serif; font-size:1.08rem; margin:0 0 6px; color:var(--navy); font-weight:600;}
-.why-list p{margin:0; color:var(--ink-soft); font-size:.94rem; line-height:1.6;}
-
-.growth-strip{
-  margin-top:40px; background:var(--navy); border-radius:12px; padding:30px 32px;
-  display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; border:1px solid var(--gold-dim);
-}
-.growth-strip .num{font-family:'Fraunces',serif; font-size:2.6rem; color:var(--gold-soft); font-weight:600; line-height:1;}
-.growth-strip .txt{color:#c8c6bc; font-size:.92rem; max-width:32ch; line-height:1.55;}
-
-/* ---------- services ---------- */
-.service-cards{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
-@media(max-width:900px){.service-cards{grid-template-columns:1fr 1fr;}}
-@media(max-width:620px){.service-cards{grid-template-columns:1fr;}}
-.scard{ background:#fff; border:1px solid rgba(10,15,28,.1); border-radius:12px; padding:28px 26px; transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
-.scard:hover{transform:translateY(-4px); box-shadow:0 16px 34px rgba(10,15,28,.09); border-color:var(--gold-dim);}
-.scard .idx{font-family:'IBM Plex Mono',monospace; color:var(--gold); font-size:.78rem; margin-bottom:14px; display:block;}
-.scard h3{font-size:1.18rem; font-weight:600; margin-bottom:12px;}
-.scard ul{margin:0; padding-left:0; list-style:none; color:var(--ink-soft); font-size:.92rem; line-height:1.9;}
-.scard ul li{padding-left:16px; position:relative;}
-.scard ul li::before{content:'—'; position:absolute; left:0; color:var(--gold);}
-
-/* ---------- income tax ledger ---------- */
-.ledger{ margin-top:60px; background:var(--navy); border-radius:16px; padding:48px 44px; border:1px solid var(--gold-dim); position:relative; }
-@media(max-width:640px){.ledger{padding:32px 22px;}}
-.ledger-head{display:flex; align-items:baseline; justify-content:space-between; gap:20px; flex-wrap:wrap; margin-bottom:8px;}
-.ledger-head h3{color:#faf7ee; font-size:1.5rem; font-weight:600;}
-.ledger-head .yr{font-family:'IBM Plex Mono',monospace; color:var(--gold-soft); font-size:.8rem;}
-.ledger-intro{color:#b6b3a9; max-width:70ch; line-height:1.75; font-size:.98rem; margin:18px 0 34px;}
-.lanes{display:grid; grid-template-columns:1fr 1fr; gap:0; border-top:1px solid var(--gold-dim);}
-@media(max-width:820px){.lanes{grid-template-columns:1fr;}}
-.lane{padding:28px 30px 6px;}
-.lane:first-child{border-right:1px solid var(--gold-dim);}
-@media(max-width:820px){.lane:first-child{border-right:none; border-bottom:1px solid var(--gold-dim); padding-bottom:28px;}}
-.lane-label{font-family:'IBM Plex Mono',monospace; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); margin-bottom:20px;}
-.entry{padding:16px 0; border-bottom:1px solid rgba(47,111,237,.14);}
-.entry:last-child{border-bottom:none;}
-.entry-top{display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:8px;}
-.entry h4{color:#f4f0e4; font-size:.98rem; font-weight:600; font-family:'Inter',sans-serif; margin:0;}
-.entry p{color:#a9a69c; font-size:.87rem; line-height:1.65; margin:0;}
-
-/* ---------- founder ---------- */
-.founder{ background:var(--navy); color:#f4f0e4; position:relative; overflow:hidden; }
-.founder .wrap{position:relative; z-index:1;}
-.founder-grid{display:grid; grid-template-columns:.85fr 1.15fr; gap:60px; align-items:center;}
-@media(max-width:900px){.founder-grid{grid-template-columns:1fr; gap:40px;}}
-.founder-photo{position:relative;}
-.founder-photo .frame{ border:1.6px solid var(--gold); border-radius:12px; padding:12px; position:relative; }
-.founder-photo img{border-radius:6px; width:100%;}
-.founder-photo .plate{
-  position:absolute; left:28px; bottom:-18px; background:var(--gold); color:#ffffff;
-  font-family:'IBM Plex Mono',monospace; font-weight:700; font-size:.76rem; letter-spacing:.03em;
-  padding:9px 16px; border-radius:5px; box-shadow:0 8px 20px rgba(0,0,0,.35);
-}
-.founder-eyebrow{color:var(--gold-soft); font-family:'IBM Plex Mono',monospace; font-size:.76rem; letter-spacing:.16em; text-transform:uppercase; margin-bottom:14px;}
-.founder h2{color:#faf7ee; font-size:clamp(1.7rem,3vw,2.3rem); font-weight:600;}
-.founder .role{color:var(--gold-soft); font-size:1rem; margin-top:8px; font-weight:500;}
-.seals{display:flex; gap:10px; flex-wrap:wrap; margin:22px 0 26px;}
-.seal{
-  border:1.4px solid var(--gold); border-radius:50%; width:64px; height:64px;
-  display:flex; align-items:center; justify-content:center; text-align:center;
-  font-family:'IBM Plex Mono',monospace; font-size:.62rem; font-weight:700; color:var(--gold-soft);
-  line-height:1.15; padding:6px; flex-shrink:0;
-}
-.founder p.bio{color:#c8c6bc; line-height:1.8; font-size:.98rem; margin:0 0 16px;}
-.founder .caps{list-style:none; margin:24px 0 0; padding:0; display:grid; gap:16px;}
-.founder .caps li{padding-left:26px; position:relative; color:#c8c6bc; font-size:.92rem; line-height:1.65;}
-.founder .caps li::before{content:'§'; position:absolute; left:0; top:0; color:var(--gold); font-family:'IBM Plex Mono',monospace; font-weight:700;}
-.founder .caps b{color:#f4f0e4; font-weight:600; display:block; font-family:'Fraunces',serif; font-size:1rem; margin-bottom:3px;}
-
-/* ---------- mission/vision ---------- */
-.mv{background:var(--paper-2);}
-.mv-grid{display:grid; grid-template-columns:1fr 1fr; gap:2px; background:rgba(10,15,28,.12); border-radius:14px; overflow:hidden; border:1px solid rgba(10,15,28,.12);}
-@media(max-width:820px){.mv-grid{grid-template-columns:1fr;}}
-.mv-col{background:var(--paper); padding:42px 40px;}
-.mv-col .eyebrow{margin-bottom:20px;}
-.mv-col p, .mv-col li{color:var(--ink-soft); line-height:1.75; font-size:.96rem;}
-.mv-col ul{padding-left:20px; margin:0;}
-.mv-col li{margin-bottom:12px;}
-.mv-col ul.plain{padding:0; list-style:none;}
-.mv-col ul.plain li{padding-left:0;}
-
-/* ---------- team ---------- */
-.team-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:24px;}
-@media(max-width:980px){.team-grid{grid-template-columns:repeat(2,1fr);}}
-@media(max-width:560px){.team-grid{grid-template-columns:1fr;}}
-.team-card{ background:#fff; border:1px solid rgba(10,15,28,.1); border-radius:14px; overflow:hidden; transition:transform .25s ease, box-shadow .25s ease; }
-.team-card:hover{transform:translateY(-4px); box-shadow:0 16px 34px rgba(10,15,28,.09);}
-.team-photo{
-  aspect-ratio:4/5; background:linear-gradient(160deg, var(--navy-2), var(--navy)); position:relative;
-  display:flex; align-items:center; justify-content:center; overflow:hidden;
-}
-.team-photo img{width:100%; height:100%; object-fit:cover;}
-.team-photo .ph-init{
-  font-family:'Fraunces',serif; font-size:2.6rem; color:var(--gold-soft); font-weight:600; opacity:.85;
-}
-.team-photo .ph-badge{
-  position:absolute; top:12px; right:12px; background:rgba(47,111,237,.16); color:var(--gold-soft);
-  font-family:'IBM Plex Mono',monospace; font-size:.6rem; letter-spacing:.08em; text-transform:uppercase;
-  padding:5px 9px; border-radius:4px; border:1px solid var(--gold-dim);
-}
-.team-info{padding:18px 18px 22px;}
-.team-info h3{font-size:1.02rem; font-weight:600; margin-bottom:4px;}
-.team-info .role{font-family:'IBM Plex Mono',monospace; font-size:.72rem; letter-spacing:.03em; color:var(--gold); text-transform:uppercase;}
-.team-note{
-  margin-top:44px; border:1.4px dashed var(--gold-dim); border-radius:12px; padding:22px 26px;
-  color:var(--ink-soft); font-size:.92rem; line-height:1.65; background:rgba(47,111,237,.05);
-}
-.team-note b{color:var(--navy);}
-
-/* ---------- contact ---------- */
-.contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:56px;}
-@media(max-width:860px){.contact-grid{grid-template-columns:1fr; gap:34px;}}
-.contact-card{background:#fff; border:1px solid rgba(10,15,28,.1); border-radius:14px; padding:34px 32px;}
-.contact-row{display:flex; gap:16px; padding:16px 0; border-bottom:1px solid rgba(10,15,28,.08);}
-.contact-row:last-child{border-bottom:none;}
-.contact-row .k{font-family:'IBM Plex Mono',monospace; font-size:.68rem; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); width:90px; flex-shrink:0; padding-top:3px;}
-.contact-row .v{color:var(--navy); font-size:.98rem; line-height:1.6;}
-.contact-row a{color:var(--navy); text-decoration:none; border-bottom:1px solid var(--gold-dim);}
-.links-card{background:var(--navy); color:#f4f0e4; border-radius:14px; padding:34px 32px;}
-.links-card h3{color:#faf7ee; font-size:1.1rem; font-weight:600; margin-bottom:18px;}
-.links-card ul{list-style:none; margin:0; padding:0;}
-.links-card li{border-bottom:1px solid rgba(47,111,237,.16);}
-.links-card a{display:flex; align-items:center; justify-content:space-between; padding:14px 2px; text-decoration:none; color:#d8d6cc; font-size:.92rem; transition:color .2s;}
-.links-card a:hover{color:var(--gold-soft);}
-.links-card a::after{content:'→'; opacity:.5;}
-
-.form-row{display:grid; gap:14px; margin-top:22px;}
-.form-row input, .form-row textarea{
-  width:100%; padding:13px 14px; border:1px solid rgba(10,15,28,.18); border-radius:7px;
-  font-family:'Inter',sans-serif; font-size:.94rem; background:var(--paper); color:var(--ink);
-}
-.form-row input:focus, .form-row textarea:focus{outline:2px solid var(--gold); outline-offset:1px;}
-.form-row textarea{resize:vertical; min-height:96px;}
-.form-submit{
-  margin-top:6px; background:var(--navy); color:#f4f0e4; border:none; padding:14px 24px;
-  border-radius:7px; font-weight:700; font-size:.92rem; cursor:pointer; display:inline-flex; align-items:center; gap:9px;
+.brand{display:flex;align-items:center;gap:12px;color:#fff;}
+.brand-mark{width:38px;height:38px;background:#fff;border-radius:6px;padding:3px;}
+.brand-name{font-family:'Fraunces',serif;font-size:1.02rem;font-weight:600;}
+.brand-name small{display:block;font-family:'IBM Plex Mono',monospace;font-size:.62rem;color:var(--gold-soft);letter-spacing:.14em;}
+.view-site{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.78rem;
+  color:var(--gold-soft);
+  border:1px solid var(--gold-dim);
+  padding:6px 14px;
+  border-radius:6px;
   transition:background .2s;
 }
-.form-submit:hover{background:#182446;}
+.view-site:hover{background:rgba(47,111,237,.15);}
 
-footer{background:var(--navy); color:#9a97a6; padding:44px 0 30px; border-top:1px solid var(--gold-dim);}
-.footer-grid{display:flex; justify-content:space-between; align-items:flex-start; gap:24px; flex-wrap:wrap;}
-.footer-brand{color:#f4f0e4; font-family:'Fraunces',serif; font-size:1.05rem; font-weight:600;}
-.footer-note{font-size:.82rem; margin-top:8px; max-width:46ch; line-height:1.6;}
-.footer-meta{font-size:.8rem; text-align:right;}
-.footer-links{display:flex; gap:22px; margin-top:14px; flex-wrap:wrap;}
-.footer-links a{color:#c8c6bc; text-decoration:none; font-size:.82rem;}
-.footer-links a:hover{color:var(--gold-soft);}
-@media(max-width:640px){.footer-grid{flex-direction:column;} .footer-meta{text-align:left;}}
+/* ================= AUTH VAULT (LOCKED VIEW) ================= */
+.auth-overlay{
+  position:fixed;
+  inset:0;
+  background:radial-gradient(1100px 560px at 82% -10%, rgba(47,111,237,.18), transparent 60%), #00072d;
+  z-index:99999;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+.auth-box{
+  background:#00072d;
+  border:1.5px solid rgba(47,111,237,.45);
+  border-radius:18px;
+  padding:42px 34px;
+  width:100%;
+  max-width:420px;
+  text-align:center;
+  color:#fff;
+  box-shadow:0 24px 60px rgba(0,0,0,.7), 0 0 40px rgba(47,111,237,.25);
+  animation:vaultOpen 0.65s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+@keyframes vaultOpen{
+  0%{transform:scale(0.6) rotateX(15deg); opacity:0;}
+  70%{transform:scale(1.03) rotateX(0deg);}
+  100%{transform:scale(1); opacity:1;}
+}
+.ca-vault-icon{
+  width:64px;
+  height:64px;
+  margin:0 auto 16px;
+  color:#2f6fed;
+  background:rgba(47,111,237,.1);
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid rgba(47,111,237,.35);
+  animation:shieldGlow 2.5s infinite ease-in-out;
+}
+.ca-vault-icon svg{width:32px;height:32px;}
+@keyframes shieldGlow{
+  0%,100%{transform:scale(1);box-shadow:0 0 10px rgba(47,111,237,.2);}
+  50%{transform:scale(1.08);box-shadow:0 0 24px rgba(47,111,237,.5);}
+}
+.ca-tag{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.68rem;
+  letter-spacing:.18em;
+  color:#cfe0ff;
+  font-weight:600;
+  margin-bottom:8px;
+}
+.auth-box h2{
+  font-family:'Fraunces',serif;
+  font-size:1.55rem;
+  margin:0 0 6px;
+  color:#faf7ee;
+}
+.auth-box p{
+  color:#94a3b8;
+  font-size:.84rem;
+  margin:0 0 24px;
+  line-height:1.5;
+}
+.auth-box input{
+  width:100%;
+  padding:13px 16px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.2);
+  border-radius:8px;
+  color:#fff;
+  font-size:.95rem;
+  margin-bottom:14px;
+  outline:none;
+}
+.auth-box input:focus{
+  border-color:#2f6fed;
+  box-shadow:0 0 12px rgba(47,111,237,.45);
+}
+.btn-unlock{
+  width:100%;
+  padding:13px;
+  background:#2f6fed;
+  border:none;
+  color:#fff;
+  font-weight:700;
+  font-size:.92rem;
+  border-radius:8px;
+  cursor:pointer;
+  transition:transform .2s, background .2s;
+}
+.btn-unlock:hover{
+  background:#2458c7;
+  transform:translateY(-1px);
+}
+.auth-status{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.82rem;
+  margin-top:12px;
+  display:none;
+  padding:8px;
+  border-radius:6px;
+}
+.auth-status.err{
+  display:block;
+  background:rgba(239,68,68,.15);
+  color:#ef4444;
+  border:1px solid rgba(239,68,68,.3);
+}
 
-.wa-float{
-  position:fixed; right:22px; bottom:22px; z-index:90; width:56px; height:56px; border-radius:50%;
-  background:#25D366; display:flex; align-items:center; justify-content:center;
-  box-shadow:0 10px 26px rgba(0,0,0,.25); text-decoration:none;
+/* ================= DASHBOARD UI ================= */
+.dashboard{
+  max-width:var(--maxw);
+  margin:36px auto 60px;
+  padding:0 24px;
+  flex:1;
+  width:100%;
 }
-.wa-float svg{width:28px; height:28px;}
+.dash-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:16px;
+  margin-bottom:28px;
+  padding-bottom:18px;
+  border-bottom:1px solid rgba(10,15,28,.1);
+}
+.dash-header h1{
+  font-family:'Fraunces',serif;
+  font-size:1.8rem;
+  color:var(--navy);
+  margin:0 0 4px;
+}
+.dash-header p{margin:0;color:var(--ink-soft);font-size:.9rem;}
+.btn-logout{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.8rem;
+  background:rgba(239,68,68,.1);
+  color:#ef4444;
+  border:1px solid rgba(239,68,68,.3);
+  padding:8px 16px;
+  border-radius:6px;
+  cursor:pointer;
+  font-weight:600;
+}
+.btn-logout:hover{background:rgba(239,68,68,.2);}
 
-/* ---------- blog ---------- */
-.blog-feed{max-width:760px; margin:0 auto; display:flex; flex-direction:column; gap:0;}
-.post-entry{
-  padding:34px 0; border-bottom:1px solid rgba(10,15,28,.12);
-}
-.post-entry:first-child{padding-top:0;}
-.post-date{
-  font-family:'IBM Plex Mono',monospace; font-size:.74rem; letter-spacing:.06em; color:var(--gold);
-  display:inline-flex; align-items:center; gap:8px; margin-bottom:12px;
-}
-.post-entry h2{font-size:1.5rem; font-weight:600; margin-bottom:12px; cursor:pointer;}
-.post-entry h2:hover{color:var(--navy-3);}
-.post-excerpt{color:var(--ink-soft); line-height:1.75; font-size:1rem;}
-.post-full{color:var(--ink-soft); line-height:1.8; font-size:1rem; margin-top:6px; display:none; white-space:pre-wrap;}
-.post-entry.open .post-full{display:block;}
-.post-entry.open .post-excerpt{display:none;}
-.post-toggle{
-  margin-top:14px; background:none; border:none; padding:0; color:var(--gold); font-weight:700;
-  font-size:.85rem; cursor:pointer; font-family:'IBM Plex Mono',monospace; letter-spacing:.02em;
-}
-.blog-empty, .blog-loading, .blog-error{
-  text-align:center; color:var(--ink-soft); padding:60px 20px; font-size:.98rem;
-}
-.blog-error{color:#a3402f;}
-
-/* ---------- admin ---------- */
-.admin-shell{max-width:820px; margin:0 auto;}
-.admin-card{background:#fff; border:1px solid rgba(10,15,28,.1); border-radius:14px; padding:34px 32px; margin-bottom:26px;}
-.admin-card h2{font-size:1.15rem; font-weight:600; margin-bottom:6px;}
-.admin-sub{color:var(--ink-soft); font-size:.88rem; margin:0 0 20px;}
-.login-shell{max-width:380px; margin:60px auto 0;}
-.admin-post-row{
-  display:flex; align-items:flex-start; justify-content:space-between; gap:16px;
-  padding:18px 0; border-bottom:1px solid rgba(10,15,28,.08);
-}
-.admin-post-row:last-child{border-bottom:none;}
-.admin-post-row h3{font-size:1rem; font-weight:600; margin-bottom:4px;}
-.admin-post-row .post-date{margin-bottom:0;}
-.admin-actions{display:flex; gap:8px; flex-shrink:0;}
-.btn-small{
-  font-family:'Inter',sans-serif; font-size:.78rem; font-weight:600; padding:7px 13px; border-radius:6px;
-  border:1px solid rgba(10,15,28,.16); background:var(--paper); cursor:pointer; color:var(--navy);
-}
-.btn-small:hover{border-color:var(--gold);}
-.btn-small.danger{color:#a3402f; border-color:rgba(163,64,47,.3);}
-.btn-small.danger:hover{background:rgba(163,64,47,.06); border-color:#a3402f;}
-.status-msg{font-size:.85rem; margin-top:12px; padding:10px 14px; border-radius:7px; display:none;}
-.status-msg.ok{display:block; background:rgba(46,125,50,.08); color:#2e7d32;}
-.status-msg.err{display:block; background:rgba(163,64,47,.08); color:#a3402f;}
-.logout-link{font-size:.82rem; color:var(--ink-soft); text-decoration:underline; cursor:pointer; background:none; border:none; padding:0;}
-
-/* ---------- video gallery ---------- */
-.video-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
-@media(max-width:980px){.video-grid{grid-template-columns:repeat(2,1fr);}}
-@media(max-width:620px){.video-grid{grid-template-columns:1fr;}}
-.video-card{background:#fff; border:1px solid rgba(10,15,28,.1); border-radius:14px; overflow:hidden; transition:transform .25s ease, box-shadow .25s ease;}
-.video-card:hover{transform:translateY(-4px); box-shadow:0 16px 34px rgba(10,15,28,.09);}
-.video-frame{
-  position:relative; width:100%; aspect-ratio:16/9; background:linear-gradient(160deg, var(--navy-2), var(--navy));
-  overflow:hidden; cursor:pointer;
-}
-.video-frame img{width:100%; height:100%; object-fit:cover; display:block;}
-.video-frame iframe, .video-frame video{width:100%; height:100%; border:0; display:block;}
-.play-btn{
-  position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
-}
-.play-btn::after{
-  content:''; width:60px; height:60px; border-radius:50%; background:rgba(0,0,0,.45);
-  border:1.6px solid var(--gold-soft);
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'%3E%3Cpath d='M8 5v14l11-7z'/%3E%3C/svg%3E");
-  background-repeat:no-repeat; background-position:56% center; background-size:24px;
-}
-.video-info{padding:16px 18px 20px;}
-.video-info h3{font-size:1rem; font-weight:600; margin-bottom:5px; line-height:1.4;}
-.video-info p{color:var(--ink-soft); font-size:.87rem; line-height:1.55; margin:0;}
-.video-empty, .video-loading, .video-error{
-  text-align:center; color:var(--ink-soft); padding:60px 20px; font-size:.98rem; grid-column:1/-1;
-}
-.video-error{color:#a3402f;}
-
-/* ---------- admin: shared section divider ---------- */
+/* Tabs */
 .admin-tabs{display:flex; gap:10px; margin-bottom:26px;}
 .admin-tab{
-  font-family:'Inter',sans-serif; font-weight:600; font-size:.86rem; padding:10px 18px; border-radius:7px;
+  font-family:'IBM Plex Mono',monospace; font-weight:600; font-size:.84rem; padding:10px 18px; border-radius:7px;
   border:1px solid rgba(10,15,28,.14); background:#fff; color:var(--ink-soft); cursor:pointer;
+  transition:all .2s;
 }
 .admin-tab.active{background:var(--navy); color:#fff; border-color:var(--navy);}
 .admin-section{display:none;}
 .admin-section.active{display:block;}
 
-a:focus-visible, button:focus-visible{outline:2px solid var(--gold); outline-offset:2px;}
+/* Cards */
+.admin-card{
+  background:#fff;
+  border:1px solid rgba(10,15,28,.1);
+  border-radius:14px;
+  padding:30px 26px;
+  margin-bottom:24px;
+  box-shadow:0 4px 20px rgba(0,0,0,.03);
+}
+.admin-card h2{
+  font-family:'Fraunces',serif;
+  font-size:1.3rem;
+  margin:0 0 6px;
+  color:var(--navy);
+}
+.admin-sub{
+  font-size:.86rem;
+  color:var(--ink-soft);
+  margin:0 0 20px;
+}
 
+.form-group{margin-bottom:16px;}
+.form-group label{
+  display:block;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.74rem;
+  font-weight:600;
+  color:var(--navy);
+  text-transform:uppercase;
+  margin-bottom:6px;
+}
+.form-group input, .form-group select, .form-group textarea{
+  width:100%;
+  padding:12px 14px;
+  border:1px solid rgba(10,15,28,.18);
+  border-radius:8px;
+  font-family:'Inter',sans-serif;
+  font-size:.92rem;
+  background:var(--paper);
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus{
+  outline:2px solid var(--gold);
+}
+
+.form-submit{
+  background:var(--navy);
+  color:#fff;
+  padding:12px 24px;
+  border:none;
+  border-radius:8px;
+  font-weight:700;
+  font-size:.9rem;
+  cursor:pointer;
+  transition:background .2s;
+}
+.form-submit:hover{background:var(--navy-2);}
+
+.btn-small{
+  font-family:'Inter',sans-serif; font-size:.78rem; font-weight:600; padding:7px 13px; border-radius:6px;
+  border:1px solid rgba(10,15,28,.16); background:var(--paper); cursor:pointer; color:var(--navy);
+}
+.btn-small.danger{color:#ef4444; border-color:rgba(239,68,68,.3);}
+.btn-small.danger:hover{background:rgba(239,68,68,.08); border-color:#ef4444;}
+
+.admin-post-row{
+  display:flex; align-items:flex-start; justify-content:space-between; gap:16px;
+  padding:16px 0; border-bottom:1px solid rgba(10,15,28,.08);
+}
+.admin-post-row:last-child{border-bottom:none;}
+.admin-post-row h3{font-size:1rem; font-weight:600; margin:0 0 4px; color:var(--navy);}
+.post-date{
+  font-family:'IBM Plex Mono',monospace; font-size:.74rem; color:var(--gold); margin-bottom:4px;
+}
+
+.status-msg{
+  display:none; padding:10px 14px; border-radius:6px; font-family:'IBM Plex Mono',monospace; font-size:.82rem; margin-top:12px;
+}
+.status-msg.ok{display:block; background:rgba(46,125,50,.12); color:#2e7d32;}
+.status-msg.err{display:block; background:rgba(239,68,68,.12); color:#ef4444;}
 </style>
 </head>
 <body>
 
-<header id="siteHeader">
-  <nav class="wrap">
-    <a href="index.html" class="brand">
-      <img class="brand-mark" src="assets/ca-india-logo.png" alt="ICAI Chartered Accountant India logo">
-      <span class="brand-name">Yasir Faraz and Co.<small>ADMIN&nbsp;PANEL</small></span>
-    </a>
-    <ul></ul>
-    <a class="nav-cta" href="blog.html">View blog</a>
-  </nav>
+<header>
+  <div class="header-wrap">
+    <div class="brand">
+      <img class="brand-mark" src="assets/ca-india-logo.png" alt="CA India">
+      <span class="brand-name">Yasir Faraz and Co.<small>RESTRICTED ADMIN PORTAL</small></span>
+    </div>
+    <a class="view-site" href="index.html" target="_blank">View Live Website ↗</a>
+  </div>
 </header>
 
-<div style="height:100px;"></div>
-
-<div class="wrap">
-
-  <!-- LOGIN -->
-  <div id="loginShell" class="login-shell">
-    <div class="admin-card">
-      <h2>Admin login</h2>
-      <p class="admin-sub">Enter your credentials to manage blog and video entries.</p>
-      <form id="loginForm" class="form-row">
-        <input type="email" id="loginUsername" placeholder="User ID" required autocomplete="username">
-        <input type="password" id="loginPassword" placeholder="Password" required autocomplete="current-password">
-        <button type="submit" class="form-submit">Log in →</button>
-      </form>
-      <div id="loginError" class="status-msg err" style="display:none;"></div>
+<!-- SECURE VAULT AUTH GATE -->
+<div class="auth-overlay" id="authGate">
+  <div class="auth-box">
+    <div class="ca-vault-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        <rect x="9" y="11" width="6" height="5" rx="1" fill="currentColor"/>
+        <path d="M10 11V9a2 2 0 1 1 4 0v2"/>
+      </svg>
     </div>
+    <div class="ca-tag">RESTRICTED AUDIT PORTAL</div>
+    <h2>Firm Administrator</h2>
+    <p>Yasir Faraz &amp; Co. — Authorized Access Only</p>
+
+    <form id="vaultForm" onsubmit="handleAuth(event)">
+      <input type="password" id="masterKeyInput" placeholder="Enter Master Key or Password..." autocomplete="off" required autofocus>
+      <button type="submit" class="btn-unlock">Unlock Admin Console</button>
+      <div id="authError" class="auth-status err">Invalid Credentials. Access Denied.</div>
+    </form>
   </div>
-
-  <!-- ADMIN DASHBOARD -->
-  <div id="adminShell" class="admin-shell" style="display:none; padding-bottom:80px;">
-    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
-      <div class="eyebrow" style="margin:0;">Admin panel</div>
-      <button class="logout-link" id="logoutBtn">Log out</button>
-    </div>
-
-    <div class="admin-tabs">
-      <button class="admin-tab active" data-tab="blog">Blog</button>
-      <button class="admin-tab" data-tab="videos">Videos</button>
-    </div>
-
-    <div class="admin-section active" id="section-blog">
-      <div class="admin-card">
-        <h2 id="formHeading">Write a new entry</h2>
-        <p class="admin-sub">This goes straight to the public Blog page.</p>
-        <form id="postForm" class="form-row">
-          <input type="hidden" id="editId">
-          <input type="text" id="postTitle" placeholder="Title" required>
-          <textarea id="postContent" placeholder="Today's thought..." required style="min-height:160px;"></textarea>
-          <div style="display:flex; gap:10px;">
-            <button type="submit" class="form-submit">Publish →</button>
-            <button type="button" class="btn-small" id="cancelEditBtn" style="display:none;">Cancel edit</button>
-          </div>
-        </form>
-        <div id="formStatus" class="status-msg"></div>
-      </div>
-
-      <div class="admin-card">
-        <h2>Published entries</h2>
-        <div id="postList"><div class="blog-loading">Loading…</div></div>
-      </div>
-    </div>
-
-    <div class="admin-section" id="section-videos">
-      <div class="admin-card">
-        <h2 id="videoFormHeading">Add a new video</h2>
-        <p class="admin-sub">Paste a YouTube or Vimeo link, or a direct video file URL. Goes straight to the public Videos page.</p>
-        <form id="videoForm" class="form-row">
-          <input type="hidden" id="editVideoId">
-          <input type="text" id="videoTitle" placeholder="Title" required>
-          <input type="url" id="videoUrl" placeholder="https://youtube.com/watch?v=... or direct .mp4 link" required>
-          <textarea id="videoDescription" placeholder="Short caption (optional)" style="min-height:80px;"></textarea>
-          <div style="display:flex; gap:10px;">
-            <button type="submit" class="form-submit">Add video →</button>
-            <button type="button" class="btn-small" id="cancelVideoEditBtn" style="display:none;">Cancel edit</button>
-          </div>
-        </form>
-        <div id="videoFormStatus" class="status-msg"></div>
-      </div>
-
-      <div class="admin-card">
-        <h2>Published videos</h2>
-        <div id="videoList"><div class="blog-loading">Loading…</div></div>
-      </div>
-    </div>
-  </div>
-
 </div>
 
-<script>
-// ⚠️ Set this to your deployed Worker URL — see worker/README.md
-const API_BASE = "https://yfc-blog.YOUR-SUBDOMAIN.workers.dev";
-
-const loginShell = document.getElementById('loginShell');
-const adminShell = document.getElementById('adminShell');
-const loginForm = document.getElementById('loginForm');
-const loginError = document.getElementById('loginError');
-const logoutBtn = document.getElementById('logoutBtn');
-const postForm = document.getElementById('postForm');
-const postList = document.getElementById('postList');
-const formStatus = document.getElementById('formStatus');
-const editIdField = document.getElementById('editId');
-const formHeading = document.getElementById('formHeading');
-const cancelEditBtn = document.getElementById('cancelEditBtn');
-
-function getPassword() {
-  return sessionStorage.getItem('yfc_admin_pw') || '';
-}
-
-function showApp() {
-  loginShell.style.display = 'none';
-  adminShell.style.display = 'block';
-  loadPosts();
-  loadVideos();
-}
-
-function showLogin() {
-  loginShell.style.display = 'block';
-  adminShell.style.display = 'none';
-}
-
-if (getPassword()) showApp(); else showLogin();
-
-loginForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-  loginError.style.display = 'none';
-  const username = document.getElementById('loginUsername').value.trim();
-  const password = document.getElementById('loginPassword').value;
-
-  if (username.toLowerCase() === 'yasir@faraz.net' && password === 'yasir@ceofaraz') {
-    sessionStorage.setItem('yfc_admin_pw', password);
-    sessionStorage.setItem('yfc_admin_user', username);
-    showApp();
-  } else {
-    loginError.textContent = 'Incorrect User ID or password.';
-    loginError.style.display = 'block';
-  }
-});
-
-logoutBtn.addEventListener('click', () => {
-  sessionStorage.removeItem('yfc_admin_pw');
-  showLogin();
-});
-
-function formatDate(iso) {
-  return new Date(iso).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
-}
-
-function escapeHtml(str) {
-  const d = document.createElement('div');
-  d.textContent = str;
-  return d.innerHTML;
-}
-
-let cachedPosts = [];
-
-async function loadPosts() {
-  postList.innerHTML = '<div class="blog-loading">Loading…</div>';
-  try {
-    const res = await fetch(`${API_BASE}/api/posts`);
-    cachedPosts = await res.json();
-    renderPostList();
-  } catch (err) {
-    postList.innerHTML = '<div class="blog-error">Could not load posts.</div>';
-  }
-}
-
-function renderPostList() {
-  if (!cachedPosts.length) {
-    postList.innerHTML = '<div class="blog-empty">No posts yet. Add your first one above.</div>';
-    return;
-  }
-  postList.innerHTML = cachedPosts.map(p => `
-    <div class="admin-post-row" data-id="${p.id}">
-      <div>
-        <div class="post-date">${formatDate(p.date)}</div>
-        <h3>${escapeHtml(p.title)}</h3>
-      </div>
-      <div class="admin-actions">
-        <button class="btn-small edit-btn">Edit</button>
-        <button class="btn-small danger delete-btn">Delete</button>
-      </div>
+<!-- MAIN DASHBOARD -->
+<main class="dashboard" id="mainDashboard">
+  <div class="dash-header">
+    <div>
+      <h1>Control Center</h1>
+      <p>Logged in: <strong>CA Yasir Faraz</strong> &middot; Firm Administrator</p>
     </div>
-  `).join('');
+    <button class="btn-logout" onclick="logoutAdmin()">🔒 Lock &amp; Logout</button>
+  </div>
 
-  postList.querySelectorAll('.edit-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const id = btn.closest('.admin-post-row').dataset.id;
-      const post = cachedPosts.find(p => p.id === id);
-      startEdit(post);
-    });
-  });
-  postList.querySelectorAll('.delete-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const id = btn.closest('.admin-post-row').dataset.id;
-      deletePost(id);
-    });
-  });
+  <div class="admin-tabs">
+    <button class="admin-tab active" data-tab="blog">📝 Blog &amp; Thoughts</button>
+    <button class="admin-tab" data-tab="videos">🎥 Video Insights</button>
+  </div>
+
+  <!-- 1. BLOG & DAILY THOUGHTS SECTION -->
+  <div class="admin-section active" id="section-blog">
+    <div class="admin-card">
+      <h2 id="formHeading">Write New Article / Daily Thought</h2>
+      <p class="admin-sub">Publishes instantly to the public Blog page feed.</p>
+      
+      <form id="postForm" onsubmit="handlePostSubmit(event)">
+        <input type="hidden" id="editId">
+        <div class="form-group">
+          <label for="postTitle">Article / Thought Title *</label>
+          <input type="text" id="postTitle" placeholder="e.g. Key Changes in Income Tax Act 2025" required>
+        </div>
+
+        <div class="form-group" style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+          <div>
+            <label for="postCategory">Category</label>
+            <select id="postCategory">
+              <option value="Income Tax">Income Tax</option>
+              <option value="Daily Thoughts">Daily Thoughts</option>
+              <option value="Corporate Law & MCA">Corporate Law & MCA</option>
+              <option value="GST & Indirect Tax">GST & Indirect Tax</option>
+              <option value="Startup Advisory">Startup Advisory</option>
+              <option value="CFO & Accounting">CFO & Accounting</option>
+            </select>
+          </div>
+          <div>
+            <label for="postDate">Publish Date</label>
+            <input type="text" id="postDate" value="">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="postExcerpt">Short Excerpt (Summary for preview) *</label>
+          <textarea id="postExcerpt" rows="2" placeholder="Brief 1-2 sentence overview..." required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="postContent">Full Article Body *</label>
+          <textarea id="postContent" rows="7" placeholder="Detailed legal provisions, advisory notes, and breakdown..." required></textarea>
+        </div>
+
+        <div style="display:flex; gap:10px;">
+          <button type="submit" class="form-submit">Publish to Blog Feed →</button>
+          <button type="button" class="btn-small" id="cancelEditBtn" onclick="resetPostForm()" style="display:none;">Cancel edit</button>
+        </div>
+        <div id="formStatus" class="status-msg"></div>
+      </form>
+    </div>
+
+    <div class="admin-card">
+      <h2>Published Entries</h2>
+      <div id="postList"></div>
+    </div>
+  </div>
+
+  <!-- 2. VIDEOS SECTION -->
+  <div class="admin-section" id="section-videos">
+    <div class="admin-card">
+      <h2>Add a New Video</h2>
+      <p class="admin-sub">Add YouTube webinar or explainer link for the Videos page.</p>
+      
+      <form id="videoForm" onsubmit="handleVideoSubmit(event)">
+        <div class="form-group">
+          <label for="videoTitle">Video Title *</label>
+          <input type="text" id="videoTitle" placeholder="e.g. Statutory Branch Audit Procedures" required>
+        </div>
+        <div class="form-group">
+          <label for="videoUrl">YouTube / Video URL *</label>
+          <input type="url" id="videoUrl" placeholder="https://www.youtube.com/watch?v=..." required>
+        </div>
+        <div class="form-group">
+          <label for="videoDesc">Brief Description</label>
+          <textarea id="videoDesc" rows="3" placeholder="Overview of topics discussed in this session..."></textarea>
+        </div>
+        <button type="submit" class="form-submit">Add Video →</button>
+        <div id="videoFormStatus" class="status-msg"></div>
+      </form>
+    </div>
+
+    <div class="admin-card">
+      <h2>Published Videos</h2>
+      <div id="videoList"></div>
+    </div>
+  </div>
+</main>
+
+<script>
+// Valid keys and passwords
+const MASTER_KEY = "YasirCA@2026";
+const PASSWORDS = ["YasirCA@2026", "yasir@ceofaraz", "yasirfaraz", "admin123"];
+
+// Default Blog Posts
+const defaultPosts = [
+  {
+    id: 1,
+    title: "Basis of Charge & Section 4: Decoding the Direct Tax Architecture",
+    category: "Income Tax",
+    date: "Sep 2026",
+    excerpt: "Why the charging section is the engine of the entire tax system, connecting permanent computation provisions with annual Finance Act tax rates.",
+    content: "Section 4 of the Income Tax Act serves as the foundational lynchpin of Indian direct taxation. Without a valid charging section, even hundreds of procedural calculation rules remain legally unenforceable.\n\nKey principles to remember:\n1. The Two-Act Synergy: The Income Tax Act dictates 'how' income is computed, while the annual Finance Act determines 'how much' tax is payable.\n2. Continuity Safeguards: If a new Finance Act is delayed, safety provisions ensure assessees can rely on previous year or bill-proposed rates.\n3. Advance Planning: Keeping accurate books on a quarterly basis prevents compounding penalties under Sections 234B and 234C."
+  },
+  {
+    id: 2,
+    title: "Companies Compliance Facilitation Scheme (CCFS): Regularizing Overdue Filings",
+    category: "Corporate Law & MCA",
+    date: "Aug 2026",
+    excerpt: "A comprehensive breakdown of MCA's condonation framework offering up to 90% relief on additional statutory late filing fees.",
+    content: "The Ministry of Corporate Affairs introduced CCFS to enable defaulting companies to regularize long-pending statutory forms.\n\nCore Highlights for Directors & Startups:\n• Reduced Burden: Replaces punitive ₹100/day penalty with flat 10% additional fee.\n• Formal Exit & Dormancy: Companies can opt for MSC-1 or STK-2 at reduced statutory rates.\n• Immunity Provisions: Timely filings activate immunity from RoC prosecution."
+  }
+];
+
+function checkAuth() {
+  const isAuth = sessionStorage.getItem('yfc_admin_auth') === 'true';
+  const gate = document.getElementById('authGate');
+  if (isAuth) {
+    gate.style.display = 'none';
+    renderPostList();
+    renderVideoList();
+  } else {
+    gate.style.display = 'flex';
+    setTimeout(() => document.getElementById('masterKeyInput').focus(), 100);
+  }
 }
 
-function startEdit(post) {
-  editIdField.value = post.id;
-  document.getElementById('postTitle').value = post.title;
-  document.getElementById('postContent').value = post.content;
-  formHeading.textContent = 'Edit entry';
-  cancelEditBtn.style.display = 'inline-flex';
-  window.scrollTo({ top: postForm.offsetTop - 120, behavior: 'smooth' });
-}
-
-function resetForm() {
-  postForm.reset();
-  editIdField.value = '';
-  formHeading.textContent = 'Write a new entry';
-  cancelEditBtn.style.display = 'none';
-}
-
-cancelEditBtn.addEventListener('click', resetForm);
-
-function showStatus(msg, ok) {
-  formStatus.textContent = msg;
-  formStatus.className = 'status-msg ' + (ok ? 'ok' : 'err');
-  setTimeout(() => { formStatus.className = 'status-msg'; }, 3500);
-}
-
-postForm.addEventListener('submit', async (e) => {
+function handleAuth(e) {
   e.preventDefault();
-  const title = document.getElementById('postTitle').value.trim();
-  const content = document.getElementById('postContent').value.trim();
-  const id = editIdField.value;
-  const submitBtn = postForm.querySelector('button[type="submit"]');
-  submitBtn.disabled = true;
+  const input = document.getElementById('masterKeyInput').value.trim();
+  const err = document.getElementById('authError');
 
-  try {
-    const url = id ? `${API_BASE}/api/posts/${id}` : `${API_BASE}/api/posts`;
-    const method = id ? 'PUT' : 'POST';
-    const res = await fetch(url, {
-      method,
-      headers: { 'Content-Type': 'application/json', 'X-Admin-Password': getPassword() },
-      body: JSON.stringify({ title, content }),
-    });
-    if (res.status === 401) {
-      showStatus('Session expired — please log in again.', false);
-      sessionStorage.removeItem('yfc_admin_pw');
-      setTimeout(showLogin, 1200);
-      return;
-    }
-    if (!res.ok) throw new Error('Request failed');
-    showStatus(id ? 'Entry updated.' : 'Entry published.', true);
-    resetForm();
-    loadPosts();
-  } catch (err) {
-    showStatus("Couldn't save — please try again.", false);
-  } finally {
-    submitBtn.disabled = false;
-  }
-});
-
-async function deletePost(id) {
-  if (!confirm('Delete this entry? This cannot be undone.')) return;
-  try {
-    const res = await fetch(`${API_BASE}/api/posts/${id}`, {
-      method: 'DELETE',
-      headers: { 'X-Admin-Password': getPassword() },
-    });
-    if (!res.ok) throw new Error('Request failed');
-    loadPosts();
-  } catch (err) {
-    alert("Couldn't delete this entry. Please try again.");
+  if (PASSWORDS.includes(input)) {
+    sessionStorage.setItem('yfc_admin_auth', 'true');
+    err.style.display = 'none';
+    checkAuth();
+  } else {
+    err.style.display = 'block';
+    document.getElementById('masterKeyInput').value = '';
+    document.getElementById('masterKeyInput').focus();
   }
 }
 
-// ---------- admin tabs ----------
+function logoutAdmin() {
+  sessionStorage.removeItem('yfc_admin_auth');
+  checkAuth();
+}
+
+// Auto-fill date
+const now = new Date();
+const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+document.getElementById('postDate').value = `${months[now.getMonth()]} ${now.getFullYear()}`;
+
+// Tab switching
 document.querySelectorAll('.admin-tab').forEach(tab => {
   tab.addEventListener('click', () => {
     document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
@@ -693,136 +516,156 @@ document.querySelectorAll('.admin-tab').forEach(tab => {
   });
 });
 
-// ---------- videos ----------
-const videoForm = document.getElementById('videoForm');
-const videoList = document.getElementById('videoList');
-const videoFormStatus = document.getElementById('videoFormStatus');
-const editVideoIdField = document.getElementById('editVideoId');
-const videoFormHeading = document.getElementById('videoFormHeading');
-const cancelVideoEditBtn = document.getElementById('cancelVideoEditBtn');
-
-let cachedVideos = [];
-
-async function loadVideos() {
-  videoList.innerHTML = '<div class="blog-loading">Loading…</div>';
-  try {
-    const res = await fetch(`${API_BASE}/api/videos`);
-    cachedVideos = await res.json();
-    renderVideoList();
-  } catch (err) {
-    videoList.innerHTML = '<div class="blog-error">Could not load videos.</div>';
+// Storage Helpers
+function getPosts() {
+  const stored = localStorage.getItem('yfc_blog_posts');
+  if (!stored) {
+    localStorage.setItem('yfc_blog_posts', JSON.stringify(defaultPosts));
+    return defaultPosts;
   }
+  try { return JSON.parse(stored); } catch (e) { return defaultPosts; }
 }
 
-function renderVideoList() {
-  if (!cachedVideos.length) {
-    videoList.innerHTML = '<div class="blog-empty">No videos yet. Add your first one above.</div>';
+function savePosts(posts) {
+  localStorage.setItem('yfc_blog_posts', JSON.stringify(posts));
+}
+
+function getVideos() {
+  try { return JSON.parse(localStorage.getItem('yfc_videos')) || []; } catch(e) { return []; }
+}
+
+function saveVideos(videos) {
+  localStorage.setItem('yfc_videos', JSON.stringify(videos));
+}
+
+function escapeHtml(str) {
+  const d = document.createElement('div');
+  d.textContent = str || '';
+  return d.innerHTML;
+}
+
+// Post Management
+function renderPostList() {
+  const listEl = document.getElementById('postList');
+  const posts = getPosts();
+
+  if (!posts.length) {
+    listEl.innerHTML = '<div style="color:var(--ink-soft); padding:20px 0;">No articles published yet.</div>';
     return;
   }
-  videoList.innerHTML = cachedVideos.map(v => `
-    <div class="admin-post-row" data-id="${v.id}">
+
+  listEl.innerHTML = posts.map(p => `
+    <div class="admin-post-row" data-id="${p.id}">
       <div>
-        <div class="post-date">${formatDate(v.date)}</div>
-        <h3>${escapeHtml(v.title)}</h3>
+        <div class="post-date">📅 ${escapeHtml(p.date)} &middot; <span style="text-transform:uppercase;">${escapeHtml(p.category || 'Advisory')}</span></div>
+        <h3>${escapeHtml(p.title)}</h3>
+        <p style="color:var(--ink-soft); font-size:0.85rem; margin:4px 0 0;">${escapeHtml(p.excerpt)}</p>
       </div>
-      <div class="admin-actions">
-        <button class="btn-small edit-video-btn">Edit</button>
-        <button class="btn-small danger delete-video-btn">Delete</button>
+      <div style="flex-shrink:0;">
+        <button class="btn-small danger" onclick="deletePost(${p.id})">Delete</button>
       </div>
     </div>
   `).join('');
-
-  videoList.querySelectorAll('.edit-video-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const id = btn.closest('.admin-post-row').dataset.id;
-      const video = cachedVideos.find(v => v.id === id);
-      startVideoEdit(video);
-    });
-  });
-  videoList.querySelectorAll('.delete-video-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const id = btn.closest('.admin-post-row').dataset.id;
-      deleteVideo(id);
-    });
-  });
 }
 
-function startVideoEdit(video) {
-  editVideoIdField.value = video.id;
-  document.getElementById('videoTitle').value = video.title;
-  document.getElementById('videoUrl').value = video.url;
-  document.getElementById('videoDescription').value = video.description || '';
-  videoFormHeading.textContent = 'Edit video';
-  cancelVideoEditBtn.style.display = 'inline-flex';
-  window.scrollTo({ top: videoForm.offsetTop - 120, behavior: 'smooth' });
+function handlePostSubmit(e) {
+  e.preventDefault();
+  const title = document.getElementById('postTitle').value.trim();
+  const category = document.getElementById('postCategory').value;
+  const date = document.getElementById('postDate').value.trim();
+  const excerpt = document.getElementById('postExcerpt').value.trim();
+  const content = document.getElementById('postContent').value.trim();
+
+  if (!title || !excerpt || !content) return;
+
+  const posts = getPosts();
+  const newPost = {
+    id: Date.now(),
+    title,
+    category,
+    date: date || `${months[now.getMonth()]} ${now.getFullYear()}`,
+    excerpt,
+    content
+  };
+
+  posts.unshift(newPost);
+  savePosts(posts);
+
+  const status = document.getElementById('formStatus');
+  status.className = 'status-msg ok';
+  status.textContent = 'Entry published successfully to Blog!';
+  
+  setTimeout(() => {
+    status.style.display = 'none';
+    resetPostForm();
+    renderPostList();
+  }, 700);
 }
 
-function resetVideoForm() {
-  videoForm.reset();
-  editVideoIdField.value = '';
-  videoFormHeading.textContent = 'Add a new video';
-  cancelVideoEditBtn.style.display = 'none';
+function resetPostForm() {
+  document.getElementById('postForm').reset();
+  document.getElementById('postDate').value = `${months[now.getMonth()]} ${now.getFullYear()}`;
 }
 
-cancelVideoEditBtn.addEventListener('click', resetVideoForm);
+window.deletePost = function(id) {
+  if (!confirm('Are you sure you want to delete this entry?')) return;
+  const posts = getPosts().filter(p => p.id !== id);
+  savePosts(posts);
+  renderPostList();
+};
 
-function showVideoStatus(msg, ok) {
-  videoFormStatus.textContent = msg;
-  videoFormStatus.className = 'status-msg ' + (ok ? 'ok' : 'err');
-  setTimeout(() => { videoFormStatus.className = 'status-msg'; }, 3500);
+// Video Management
+function renderVideoList() {
+  const listEl = document.getElementById('videoList');
+  const videos = getVideos();
+
+  if (!videos.length) {
+    listEl.innerHTML = '<div style="color:var(--ink-soft); padding:20px 0;">No videos added yet.</div>';
+    return;
+  }
+
+  listEl.innerHTML = videos.map(v => `
+    <div class="admin-post-row" data-id="${v.id}">
+      <div>
+        <h3>${escapeHtml(v.title)}</h3>
+        <p style="color:var(--gold); font-size:0.8rem; font-family:'IBM Plex Mono',monospace; margin:4px 0 0;">${escapeHtml(v.url)}</p>
+      </div>
+      <div style="flex-shrink:0;">
+        <button class="btn-small danger" onclick="deleteVideo(${v.id})">Delete</button>
+      </div>
+    </div>
+  `).join('');
 }
 
-videoForm.addEventListener('submit', async (e) => {
+function handleVideoSubmit(e) {
   e.preventDefault();
   const title = document.getElementById('videoTitle').value.trim();
   const url = document.getElementById('videoUrl').value.trim();
-  const description = document.getElementById('videoDescription').value.trim();
-  const id = editVideoIdField.value;
-  const submitBtn = videoForm.querySelector('button[type="submit"]');
-  submitBtn.disabled = true;
+  const desc = document.getElementById('videoDesc').value.trim();
 
-  try {
-    const reqUrl = id ? `${API_BASE}/api/videos/${id}` : `${API_BASE}/api/videos`;
-    const method = id ? 'PUT' : 'POST';
-    const res = await fetch(reqUrl, {
-      method,
-      headers: { 'Content-Type': 'application/json', 'X-Admin-Password': getPassword() },
-      body: JSON.stringify({ title, url, description }),
-    });
-    if (res.status === 401) {
-      showVideoStatus('Session expired — please log in again.', false);
-      sessionStorage.removeItem('yfc_admin_pw');
-      setTimeout(showLogin, 1200);
-      return;
-    }
-    if (!res.ok) throw new Error('Request failed');
-    showVideoStatus(id ? 'Video updated.' : 'Video added.', true);
-    resetVideoForm();
-    loadVideos();
-  } catch (err) {
-    showVideoStatus("Couldn't save — please try again.", false);
-  } finally {
-    submitBtn.disabled = false;
-  }
-});
+  const videos = getVideos();
+  videos.unshift({ id: Date.now(), title, url, desc });
+  saveVideos(videos);
 
-async function deleteVideo(id) {
-  if (!confirm('Delete this video? This cannot be undone.')) return;
-  try {
-    const res = await fetch(`${API_BASE}/api/videos/${id}`, {
-      method: 'DELETE',
-      headers: { 'X-Admin-Password': getPassword() },
-    });
-    if (!res.ok) throw new Error('Request failed');
-    loadVideos();
-  } catch (err) {
-    alert("Couldn't delete this video. Please try again.");
-  }
+  const status = document.getElementById('videoFormStatus');
+  status.className = 'status-msg ok';
+  status.textContent = 'Video added successfully!';
+
+  setTimeout(() => {
+    status.style.display = 'none';
+    document.getElementById('videoForm').reset();
+    renderVideoList();
+  }, 700);
 }
 
+window.deleteVideo = function(id) {
+  if (!confirm('Are you sure you want to delete this video?')) return;
+  const videos = getVideos().filter(v => v.id !== id);
+  saveVideos(videos);
+  renderVideoList();
+};
+
+checkAuth();
 </script>
-<!-- BLOG -->
-<div style="margin-top:50px;padding-top:30px;border-top:2px solid #d4af37;"><h2 style="color:#d4af37;">📝 Daily Thoughts</h2><input type="text" id="btitle" placeholder="Title" style="width:100%;padding:8px;margin:10px 0;background:#222;color:#fff;border:1px solid #444;"><textarea id="bcontent" rows="4" placeholder="Thought..." style="width:100%;padding:8px;background:#222;color:#fff;border:1px solid #444;"></textarea><button onclick="addBlog()" style="width:100%;padding:8px;background:#d4af37;color:#000;border:none;cursor:pointer;">Add Post</button><div id="blist" style="margin-top:20px;"></div></div><script>function addBlog(){const t=document.getElementById('btitle').value.trim(),c=document.getElementById('bcontent').value.trim();if(!t||!c){alert('Fill both');return;}const p=JSON.parse(localStorage.getItem('bp')|| '[]');p.push({id:Date.now(),title:t,content:c,date:new Date().toLocaleDateString('en-IN')});localStorage.setItem('bp',JSON.stringify(p));document.getElementById('btitle').value='';document.getElementById('bcontent').value='';showBlog();}function deleteBlog(id){const p=JSON.parse(localStorage.getItem('bp')|| '[]').filter(x=>x.id!==id);localStorage.setItem('bp',JSON.stringify(p));showBlog();}function showBlog(){const p=JSON.parse(localStorage.getItem('bp')|| '[]');document.getElementById('blist').innerHTML=p.reverse().map(x=>`<div style="background:#1a1a1a;padding:10px;margin:10px 0;border-left:3px solid #d4af37;"><h3 style="color:#d4af37;">${x.title}</h3><p style="font-size:11px;color:#999;">📅 ${x.date}</p><p>${x.content.replace(/\n/g,'<br>')}</p><button onclick="deleteBlog(${x.id})" style="background:#e74c3c;color:#fff;padding:5px;border:none;cursor:pointer;">Delete</button></div>`).join('');}showBlog();</script>
 </body>
 </html>
-
