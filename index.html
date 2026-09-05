@@ -298,7 +298,7 @@ section{padding:90px 0;}
   font-weight:bold;
 }
 
-/* ---------- founder (reduced top padding to remove gap) ---------- */
+/* ---------- founder ---------- */
 .founder{
   background:var(--navy);
   color:#f4f0e4;
@@ -314,7 +314,19 @@ section{padding:90px 0;}
 @media(max-width:900px){.founder-grid{grid-template-columns:1fr; gap:32px;}}
 .founder-photo{position:relative;}
 .founder-photo .frame{ border:1.6px solid var(--gold); border-radius:12px; padding:12px; position:relative; }
-.founder-photo img{border-radius:6px; width:100%;}
+.founder-photo img{
+  border-radius:6px;
+  width:100%;
+  cursor:pointer;
+  transition:filter 0.4s ease, transform 0.3s ease;
+  user-select:none;
+}
+.founder-photo img:active{
+  transform:scale(0.98);
+}
+.founder-photo img.grayscale-mode{
+  filter:grayscale(100%);
+}
 .founder-eyebrow{color:var(--gold-soft); font-family:'IBM Plex Mono',monospace; font-size:.76rem; letter-spacing:.16em; text-transform:uppercase; margin-bottom:14px;}
 .founder h2{color:#faf7ee; font-size:clamp(1.7rem,3vw,2.3rem); font-weight:600;}
 .founder .role{color:var(--gold-soft); font-size:1rem; margin-top:8px; font-weight:500;}
@@ -461,7 +473,7 @@ footer{background:var(--navy); color:#9a97a6; padding:44px 0 30px; border-top:1p
     <div class="founder-grid">
       <div class="founder-photo reveal">
         <div class="frame">
-          <img src="assets/founder.jpg" alt="CA Yasir Faraz, founder of Yasir Faraz and Co." id="yasirPhoto" class="color-cycle-img" style="cursor:pointer;">
+          <img src="assets/founder.jpg" alt="CA Yasir Faraz, founder of Yasir Faraz and Co." id="yasirPhoto" class="color-cycle-img" title="Click to toggle grayscale / color">
         </div>
       </div>
       <div class="reveal">
@@ -828,6 +840,14 @@ if (burger && mobileMenu) {
   burger.addEventListener('click', () => mobileMenu.classList.add('open'));
   mobileClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
   mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
+}
+
+// Founder Photo Click -> Grayscale Toggle
+const yasirPhoto = document.getElementById('yasirPhoto');
+if (yasirPhoto) {
+  yasirPhoto.addEventListener('click', () => {
+    yasirPhoto.classList.toggle('grayscale-mode');
+  });
 }
 
 // Scroll reveal observer
